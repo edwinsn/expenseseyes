@@ -23,9 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 #still in development
-.
+
 src/Components/Circle.js
 src/assets/css/Circle.css
 src/App.test.js
-rc/reportWebVitals.js
-rc/reportWebVitals.js
+src/setupTests.js
