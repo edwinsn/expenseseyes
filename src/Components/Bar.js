@@ -35,13 +35,12 @@ render(){
     barStyles.forEach((Style,index)=>{
 
         let adjustLabel = 22;
-            console.log(right)
+
         bars.push(<div key= {index} className="bar inline" style={Style}>
                       <div className="horizontalLines" style={{width:right+"px"}}></div>
                       <p className="label" style={{marginTop:(Style['height'].slice(0,-2)-adjustLabel)+"px"}} >{this.props.labels[index]}</p>
                   </div>);
         right +=this.props.heights.length*this.props.widths[0].width.slice(0,-2)*index+2;
-        console.log(right)
 
     });
 
@@ -56,7 +55,7 @@ let paddingTop = "19px"
         paddingTop= (i===maxHeight/40)?0:paddingTop;
 
         frecuences.unshift(
-            <div  style={{...frecuencesfontSize,paddingTop:paddingTop}}>{2*i}</div>
+            <div key={i} style={{...frecuencesfontSize,paddingTop:paddingTop}}>{2*i}</div>
         );
     }
 

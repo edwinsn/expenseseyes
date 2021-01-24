@@ -1,0 +1,39 @@
+button{
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.171);
+    overflow: hidden;
+    white-space: nowrap;
+}
+button:focus{
+    background-color: #5902FA;
+}
+
+.center{
+    text-align: center;
+}
+
+.otherType{
+    width: 150px;
+    display: inline-block;
+}
+
+.title{
+    text-align: center;
+}
+
+.cost >*{
+    display:inline;
+}
+
+.cate{
+    width: 410px;
+}
+
+
+.types >*{
+    height: 30px;
+    width: 100px;
+}
+
+.inline1{
+    display: inline-table  ;
+}
