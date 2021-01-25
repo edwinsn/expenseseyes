@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap');
+
 button{
     box-shadow: 2px 2px rgba(0, 0, 0, 0.171);
     overflow: hidden;
@@ -11,29 +13,33 @@ button:focus{
     text-align: center;
 }
 
-.otherType{
-    width: 150px;
-    display: inline-block;
-}
-
-.title{
-    text-align: center;
-}
-
 .cost >*{
     display:inline;
 }
 
-.cate{
-    width: 410px;
-}
+.otherType{
 
+    width: 150px;
+}
 
 .types >*{
     height: 30px;
     width: 100px;
 }
 
-.inline1{
+.inlineTable{
     display: inline-table  ;
+}
+
+.existingClassError{
+    color: red;
+    font-family: 'Raleway', sans-serif;
+    font-size: small;
+    margin: 0;
+
+}
+
+.left{
+ margin-left : 8px;
+ text-align: left;
 }
