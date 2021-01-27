@@ -44,7 +44,6 @@ button{
 .loadingPurchase{
     color:red;
     font-family: 'Raleway', sans-serif;
-    display: none;
     font-size: small;
 }
 .selectedCategory{

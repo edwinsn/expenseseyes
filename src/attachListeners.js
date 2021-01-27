@@ -1,5 +1,5 @@
 
-import {selectCategory} from './getAndPostFuctions'
+import {selectCategory,activeOtherCathegoryInput} from './getAndPostFuctions'
 
 
 
@@ -8,9 +8,9 @@ export const attachtListeners=()=>{
     let categoriesDiv = document.querySelector(".categories").children
 
     let categories = [...categoriesDiv];
-    console.log(categories)
      categories.forEach(element => {
         element.addEventListener("click",selectCategory); 
      });
+     document.querySelector(".otherType").addEventListener("click",activeOtherCathegoryInput)
 
 } 

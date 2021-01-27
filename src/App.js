@@ -40,7 +40,8 @@ function App() {
               <input className="otherType cost" placeholder="cost" type="number"></input>
             <br />
             <button  onClick={postNewPurchase}>Load Purchase</button>
-            <div className="loadingPurchase">Loading</div>
+            <div className="notificationPurchaseSubmit"></div>
+            
           </div>
 
         </div>
