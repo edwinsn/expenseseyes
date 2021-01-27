@@ -5,15 +5,12 @@ button{
     overflow: hidden;
     white-space: nowrap;
 }
-button:focus{
-    background-color: #5902FA;
-}
 
 .center{
     text-align: center;
 }
 
-.cost >*{
+.cost {
     display:inline;
 }
 
@@ -22,7 +19,7 @@ button:focus{
     width: 150px;
 }
 
-.types >*{
+.categories >*{
     height: 30px;
     width: 100px;
 }
@@ -42,4 +39,14 @@ button:focus{
 .left{
  margin-left : 8px;
  text-align: left;
+}
+
+.loadingPurchase{
+    color:red;
+    font-family: 'Raleway', sans-serif;
+    display: none;
+    font-size: small;
+}
+.selectedCategory{
+    background:purple;
 }

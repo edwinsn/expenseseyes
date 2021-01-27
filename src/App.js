@@ -1,15 +1,16 @@
 import Bar from './Components/Bar'
 import './assets/css/App.css'
-import {postNewPurchase, insertSavedCategories } from './getAndPostFuctions'
+import {addCategoryOnEnter, postNewPurchase, insertSavedCategories } from './getAndPostFuctions'
 import {useEffect} from 'react'
-import {addCategoryOnEnter} from './addCategory'
-
+import {attachtListeners} from './attachListeners'
 
 function App() {
 
   useEffect(()=>{
     insertSavedCategories();
+    attachtListeners();
   },[])
+
 
   // useEffect(()=>{
   //   getPurchases();
@@ -17,12 +18,12 @@ function App() {
 
   return (
     <div className="App">
-
-      <section className="">
+  
+      <section >
         <p className="center"><em>Log your pruchase</em></p><br />
         <div className="center">
           
-          <div className="types inlineTable">
+          <div className="categories inlineTable">
             <button>food</button>
             <button>rent</button>
             <button>clothes</button>
@@ -31,23 +32,26 @@ function App() {
          
           <div className="left inlineTable">
             
-            <div className="newCatrgoryContainer">
+            <div className="newCatergoryContainer">
               <input onKeyUp={addCategoryOnEnter} className="otherType" type ="text" placeholder="other type"></input>
             </div>
             
-            <div className="cost">
-              <input className="otherType" placeholder="cost" type="number"></input>
-            </div>
-            <button  onClick={postNewPurchase}>Load Purchase</button>
         
+              <input className="otherType cost" placeholder="cost" type="number"></input>
+            <br />
+            <button  onClick={postNewPurchase}>Load Purchase</button>
+            <div className="loadingPurchase">Loading</div>
           </div>
 
         </div>
       </section>  
-
       <Bar heights={[10,30,20,60,70,100,80,100,80,200]} labels={["A", "B","C","D","F","G","H","J","Last One"]} />
+      <script src="./attachListeners.js" type="text/jsx" ></script>
+
+
     </div>
-  );
+
+);
 }
 
 export default App;
