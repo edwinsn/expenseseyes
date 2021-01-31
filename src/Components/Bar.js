@@ -2,60 +2,58 @@ import React,{Component} from "react";
 import '../assets/css/bar.css'
 
 
-
 class Bar extends Component{
-    
+
 render(){
 
     let bars = [] ;
-    let frecuences = [];  
+    let maxHeight = 240;
    
-//Normalize(0,100) the data
-
 //bars styles
 
-    let labelsStyles=[];
-    let maxHeight = Math.max(...this.props.heights);
+    let maximun = Math.max(...this.props.heights);
 
-    let heightsStyle = this.props.heights.sort(function(a, b){return a - b}).map((h,i,heights)=>{
-
-        labelsStyles[i]={marginTop:(!heights[i-1])?(-heights[i]):Math.abs(h-heights[1])}
-
-        labelsStyles[i]={marginTop:0};
-        return {height: h+"px",marginTop:maxHeight-h}
-        
+    let normalizedHeights=this.props.heights.map((element)=>{
+        return maxHeight*element/maximun
+          });
+    let heightsStyle = normalizedHeights.sort(function(a, b){return a - b}).map((h)=>{
+        return {height: h+"px",marginTop:maxHeight-h}        
     });
 
     let barStyles = heightsStyle.map((height, index)=>{
-        return {...height,...this.props.widths[index],...this.props.backGroundColor[index]}
+        return {...height,...this.props.widths[index],background:this.props.background}
     });
 
-    let right = 0;
+    let horizontalLineWidth = 0;
 
     barStyles.forEach((Style,index)=>{
 
-        let adjustLabel = 22;
+        let adjustLabel = 35;
+        let adjustMarginLabel = (Style['height'].slice(0,-2)-adjustLabel)+"px"
+        horizontalLineWidth +=parseFloat(this.props.widths[index].width.slice(0,-2))+index*4;
 
-        bars.push(<div key= {index} className="bar inline" style={Style}>
-                      <div className="horizontalLines" style={{width:right+"px"}}></div>
-                      <p className="label" style={{marginTop:(Style['height'].slice(0,-2)-adjustLabel)+"px"}} >{this.props.labels[index]}</p>
-                  </div>);
-        right +=this.props.heights.length*this.props.widths[0].width.slice(0,-2)*index+2;
-
+        bars.push(
+            <div key= {index} className="bar" style={Style}>
+                    <div className="horizontalLines" style={{width:horizontalLineWidth+"px"}}></div>
+                    <p className="label" style={{marginTop:adjustMarginLabel}} >
+                        {this.props.labels[index]}
+                    </p>
+            </div>);
     });
-
-
+ 
 // frecuences style (labels in the y-axe)
 
-let frecuencesfontSize={fontSize:maxHeight/13}
-let paddingTop = "19px"
+let frecuences = [];  
+let numberOfFrecuences = 5;
+let frecuencesfontSize={fontSize:maxHeight/18}
+let paddingTop = ( (maxHeight-(numberOfFrecuences+1.1)*frecuencesfontSize.fontSize)/(numberOfFrecuences) )+"px"
 
-    for(let i=0;i<=maxHeight/40;i++){
+    for(let i=0;i<=numberOfFrecuences;i++){
 
-        paddingTop= (i===maxHeight/40)?0:paddingTop;
+        paddingTop= (i===numberOfFrecuences)?0:paddingTop;
 
         frecuences.unshift(
-            <div key={i} style={{...frecuencesfontSize,paddingTop:paddingTop}}>{2*i}</div>
+            <div key={i} style={{...frecuencesfontSize,paddingTop:paddingTop}}>{Math.round(maximun*i/numberOfFrecuences)}</div>
         );
     }
 
@@ -83,13 +81,13 @@ let paddingTop = "19px"
     });
 
 */        
-    let chartWidth = this.props.heights.length*this.props.widths[0].width.slice(0,-2)+3*this.props.heights.length+45;
+    let chartWidth = this.props.heights.length*this.props.widths[0].width.slice(0,-2)+3*this.props.heights.length+50;
 
 
         return (
             <section>
-            <div className="frecuences inline" style={{height:maxHeight+"px"}} >{frecuences}</div>
-            <div className="chart inline " style={{width:chartWidth+"px"}}>
+            <div className="frecuences" style={{height:maxHeight+"px"}} >{frecuences}</div>
+            <div className="chart" style={{width:chartWidth+"px"}}>
                     {bars}
             </div>
             </section>
@@ -101,16 +99,15 @@ const defaultHeights = []
 const defaulWidths = []
 const backGroundColor = []
 for(let i=0;i<10;i++)  defaultHeights.push("40px")
-for(let i=0;i<10;i++)  defaulWidths.push({width:"30px"})
-for(let i=0;i<10;i++)  backGroundColor.push({background:"rgb(0, 102, 255)"})
-
+for(let i=0;i<20;i++)  defaulWidths.push({width:"30px"})
+// ojo con widthsssss1
 
 
 Bar.defaultProps = {
     nbars:10,
     heights:defaultHeights,
     widths:defaulWidths,
-    backGroundColor:backGroundColor,
+    background:"rgb(0, 102, 255)",
     chartHeight:"200px"
 };
 

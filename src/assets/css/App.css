@@ -27,6 +27,9 @@ button{
 .inlineTable{
     display: inline-table  ;
 }
+.inline{
+    display: inline-block;
+}
 
 .existingClassError{
     color: red;

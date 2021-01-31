@@ -1,8 +1,10 @@
 import {Component} from 'react'
 import axios from 'axios';
-
+import '../assets/css/input.css'
+//solve the notifications errors***
+//reorder the code in a new component***
 //error when cathegory doesnt void
-
+//when clicking the input deleted active Category***
 let url = "https://jsonbox.io/box_93b2e4f60b0014f95d48";
 let activeCategory = false;
 
@@ -26,13 +28,13 @@ export class Inputs extends Component{
             <div className="left inlineTable">
         
                 <div className="newCatergoryContainer">
-                    <input onKeyUp={this.addCategoryOnEnter} onClick={this.activeOtherCathegoryInput} className="otherCategory" type ="text" placeholder="otherType"></input>
+                    <input onKeyUp={this.addCategoryOnEnter} onClick={this.activeOtherCathegoryInput} className="otherCategory" type ="text" placeholder="Other Type"></input>
                 </div>
-                <div className="categoryNotification"></div>
+                <div className="categoryNotification notification"></div>
                 <input className="cost" onKeyUp={postNewPurchaseOnEnter} placeholder="$cost" type="number"></input>
-                <div className="priceNotification"></div>
+                <div className="priceNotification notification"></div>
                 <button  onClick={postNewPurchase}>Load Purchase</button>
-                <div className="purchaseDataNotification"></div>
+                <div className="purchaseDataNotification notification"></div>
             </div>
 
         </div>)
@@ -43,6 +45,7 @@ export class Inputs extends Component{
         if(document.querySelector(".selectedCategory")){
             document.querySelector(".selectedCategory").classList.remove("selectedCategory")
             document.querySelector(".otherCategory").style.color="black";
+            activeCategory = false;
         }
 
     }

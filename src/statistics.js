@@ -1,6 +1,6 @@
 // the user will have an slide for intervals
 
-const hist = function(data,numbreOfIntervals=0){
+export const hist = function(data,numbreOfIntervals=0){
 
     if( !numbreOfIntervals ){
         if(data.lenght < 100)numbreOfIntervals = Math.ceil(5+data.lenght/20);
@@ -9,11 +9,11 @@ const hist = function(data,numbreOfIntervals=0){
 
     let max = Math.max(...data);
     let min = Math.min(...data);
-    intervals = [];
-    frecuences = [];
-
+    let intervals = [];
+    let frecuences = [];
+    let aux=0;
     for(let i=1;i<=numbreOfIntervals;i++) {
-        intervals.push(min+max*i/numbreOfIntervals)
+        intervals.push((min+max*i/numbreOfIntervals))
         frecuences.push(0)
     }
 
@@ -21,15 +21,18 @@ const hist = function(data,numbreOfIntervals=0){
 
     data.forEach(element => {
         
-        for(point in intervals){
+        for(let point in intervals){
             if(element<intervals[point]){
-                position = Math.round((intervals[point]-min)*numbreOfIntervals/max)-1;
+                let position = Math.round((intervals[point]-min)*numbreOfIntervals/max)-1;
                 frecuences[position] += 1;
                 break;
             }
         }
     });
-    return {"intervals":intervals, "frecuences":frecuences}
+    let labels = intervals.map((element,i,int)=>{
+        return Math.round(int[i-1]?int[i-1]:0) +" - "+Math.round(element);
+    });
+    return {"labels":labels, "frecuences":frecuences}
 }
 
 /* prueba hist
@@ -38,7 +41,7 @@ for (let i =0;i<10;i++)data.push(Math.random()*100);
 console.log(hist(data))*/
 
 const sum = function(data){
-    return data.reduce((acumulator, current)=>{acumulator+current})
+    return 0//data.reduce((acumulator, current)=>{acumulator+current})
 }
 
 const mean = function(data){
@@ -52,7 +55,7 @@ const unique = function(data){
 const groupby = function(data, variable){
   
   let groupedData = {};
-  UniqueVariables = unique(data.map( datum => datum[variable]))
+  let UniqueVariables = unique(data.map( datum => datum[variable]))
 
   UniqueVariables.forEach( uniqueVariable =>{
       groupedData[uniqueVariable] = data.filter(element => element[variable]===uniqueVariable) ;
@@ -68,21 +71,20 @@ const groupby = function(data, variable){
 ],"hair"));
 */
 
-const groupBy = function(data, variables){
+export const groupBy = function(data, variables){
     
-    groupedData = [data];
+    let groupedData = {"":data};
     
     variables.forEach( variable =>{
 
         let aux = {};
 
-        for( group in groupedData ){
+        for(let group in groupedData ){
             let newGroups = groupby(groupedData[group], variable);
-        //   delete groupedData[group];
-            for (key in newGroups){
+        //delete groupedData[group];
+            for (let key in newGroups){
               aux[group+" "+key] = newGroups[key]
             }
-            
         }
         groupedData = Object.assign({},aux);
 
@@ -90,7 +92,7 @@ const groupBy = function(data, variables){
     return groupedData;
 }
 
-data1 = [
+let data1 = [
     {name:"Jotamario",yearsOld:"100",profession:"presenter"},
     {name:"David",yearsOld:"36",profession:"programer"},
     {name:"Luis",yearsOld:"36", profession:"programer"},
@@ -102,6 +104,4 @@ data1 = [
     
 ]
 
-console.log(groupBy(data1,["profession","yearsOld"]));
-
-//add some try and undefine lines
+//console.log(groupBy(data1,["profession","yearsOld"]));
