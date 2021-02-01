@@ -1,19 +1,15 @@
 import {Component} from 'react'
 import axios from 'axios';
 import '../assets/css/input.css'
-//solve the notifications errors***
-//reorder the code in a new component***
-//error when cathegory doesnt void
-//when clicking the input deleted active Category***
+
 let url = "https://jsonbox.io/box_93b2e4f60b0014f95d48";
 let activeCategory = false;
 
 export class Inputs extends Component{
-
-
-    //  componentDidMount(){
-    //      insertSavedCategories();
-    //  }
+    //
+    componentDidMount(){
+        insertSavedCategories();
+    }
 
     render(){
         return (<div>
@@ -25,10 +21,9 @@ export class Inputs extends Component{
                 <button onClick={selectCategory}>tech</button>      
             </div>
     
-            <div className="left inlineTable">
-        
-                <div className="newCatergoryContainer">
-                    <input onKeyUp={this.addCategoryOnEnter} onClick={this.activeOtherCathegoryInput} className="otherCategory" type ="text" placeholder="Other Type"></input>
+            <div className="left inlineTable">    
+                <div>
+                    <input onKeyUp={addCategoryOnEnter} onClick={activeOtherCathegoryInput} className="otherCategory" type ="text" placeholder="Other Type"></input>
                 </div>
                 <div className="categoryNotification notification"></div>
                 <input className="cost" onKeyUp={postNewPurchaseOnEnter} placeholder="$cost" type="number"></input>
@@ -38,30 +33,29 @@ export class Inputs extends Component{
             </div>
 
         </div>)
-    }
-
-    activeOtherCathegoryInput(){
-        //if there is an cathegory selectec deselect it
-        if(document.querySelector(".selectedCategory")){
-            document.querySelector(".selectedCategory").classList.remove("selectedCategory")
-            document.querySelector(".otherCategory").style.color="black";
-            activeCategory = false;
-        }
-
-    }
-    addCategoryOnEnter(event){
-        if(event.keyCode===13){
-            addCategory(event.target.value);
-        }
     } 
+}
+
+let activeOtherCathegoryInput=()=>{
+    //if there is an cathegory selectec deselect it
+    if(document.querySelector(".selectedCategory")){
+        document.querySelector(".selectedCategory").classList.remove("selectedCategory")
+        document.querySelector(".otherCategory").style.color="black";
+        activeCategory = false;
+    }
+}
+const addCategoryOnEnter=(event)=>{
+    if(event.keyCode===13){
+        addCategory(event.target.value);
+    }
 }
 
 let selectCategory =(event)=>{
 
     //deselect the previous selection
-    let peviousCathegorySelection=document.querySelector(".selectedCategory")
-    if(peviousCathegorySelection) {
-    peviousCathegorySelection.classList.remove("selectedCategory")
+    let peviousCategorySelection=document.querySelector(".selectedCategory");
+    if(peviousCategorySelection){
+    peviousCategorySelection.classList.remove("selectedCategory")
     }
     
     event.target.classList.add("selectedCategory")
@@ -80,13 +74,14 @@ let addCategory=(newcategoryText)=>{
     
         let newCategory = document.createElement("button");
         newCategory.innerText = newcategoryText;
-
+        console.log(categoriesDiv.children)
         if((categoriesDiv.childElementCount+1)%5===0){
         categoriesDiv.appendChild(document.createElement("br"))
         }
         categoriesDiv.appendChild(newCategory);
         Notification("",".categoryNotification");
-        //postCategory(newcategoryText);       
+        //
+        postCategory(newcategoryText);       
     }
     else {
         
@@ -110,17 +105,17 @@ let verifyDataEntries=()=>{
 
     if(!activeCategory){
         
-        let newCategory = document.querySelector(".otherCategory").value;
-        
-        if(newCategory){
-            addCategory(newCategory);
-            Notification(".categoryNotification")
+        activeCategory = document.querySelector(".otherCategory").value;
+
+        if(activeCategory){
+            addCategory(activeCategory);
+            Notification("",".categoryNotification")
         }
         else{
             Notification("Select a category or enter a new one",".categoryNotification");
             return {cathegory:"",price:0,dataIsValid:false};
         }
-}else{Notification("",".categoryNotification")}
+    }else{Notification("",".categoryNotification")}
 
 //remove the empty category 
     let price = document.querySelector(".cost").value
@@ -133,6 +128,7 @@ let verifyDataEntries=()=>{
 
 let postNewPurchaseOnEnter=(event)=>{
     if(event.keyCode===13){
+        //
         postNewPurchase();
     }
 }
@@ -140,7 +136,6 @@ let postNewPurchaseOnEnter=(event)=>{
 let postNewPurchase = async()=>{
 
     let {cathegory,price,dataIsValid} = verifyDataEntries();
-
     
     if(dataIsValid){
 
@@ -150,7 +145,6 @@ let postNewPurchase = async()=>{
           category:cathegory,
           price:price
         })
-
     if(status===200){
 
         Notification("",".categoryNotification");
@@ -197,7 +191,5 @@ let insertSavedCategories=async()=>{
         
         });
         
-        if((categories.childElementCount+1)%4)categories.appendChild(document.createElement("ins"));
-    
     }
 }

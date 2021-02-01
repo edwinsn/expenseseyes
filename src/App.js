@@ -1,6 +1,6 @@
-import {useEffect} from 'react'
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {useEffect} from 'react'
 import './assets/css/App.css'
 import axios from 'axios';
 import Bar from './Components/Bar'
@@ -18,22 +18,18 @@ function App() {
    },[])
 
   return (
-    <div className="App">
-  
-      <section className="center">
-        <p ><em>Log your pruchase</em></p><br />        
-        <Inputs />
-      </section><br />
-      <script src="./attachListeners.js" type="text/jsx" ></script>
-      <div className="aux inline">aux1</div>
-      <div className="aux2  inline">aux2</div>
+    <div className="App center">
+      <p ><em>Log your pruchase</em></p><br />        
+      <Inputs />
+      <div className="aux inline"></div>
+      <div className="aux2  inline"></div>
     </div>
 );
 }
 
 
-export const getPurchases = async()=>{
-    let {data,status} = await axios.get(url)
+const getPurchases = async()=>{
+    let {data,status} = await axios.get(url+"/purchases")
     if(status===200)return data
     return false;
 }
@@ -42,29 +38,32 @@ const purchaseDistributionByPrice = async()=>{
   let purchases = await getPurchases();
   let prices = purchases.map(element=>element.price)
   let {frecuences,labels} = hist(prices);
- 
+  let data = [];
+
+  for(let i=0;i<frecuences.length;i++){
+    data.push({label:labels[i],height:frecuences[i]})
+  }
+
    ReactDOM.render(
-        <Bar heights={frecuences} labels={labels}/>
+        <Bar data={data} title="Prices Distribution"/>
    ,document.querySelector(".aux")
    );
 }
+
 const purchaseDistributionByCathegory = async()=>{
 
   let purchases = await getPurchases();
   let groupedData = groupBy(purchases,["category"])
-  let labels = []
-  let frecuences = []
- 
+  let data = []
+  console.log(purchases)
   for(let key in groupedData){
       
-      labels.push(key)
-      frecuences.push(groupedData[key].length)
+      data.push({label:key,height:groupedData[key].length})
       
   }
- 
-   ReactDOM.render(
-        <Bar heights={frecuences} labels={labels}/>
-   ,document.querySelector(".aux2")
+  ReactDOM.render(
+        <Bar data={data} title="Count by Cathegories"/>
+        ,document.querySelector(".aux2")
    );
 
 }

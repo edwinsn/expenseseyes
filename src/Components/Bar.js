@@ -8,21 +8,25 @@ render(){
 
     let bars = [] ;
     let maxHeight = 240;
-   
+
+//order data
+
+    let orderedData = this.props.data.sort((a,b)=>{return a.height-b.height});
+
 //bars styles
 
-    let maximun = Math.max(...this.props.heights);
+    let maximun = this.props.data.reduce((acumulator,element)=>{
+        return acumulator.height>element.height?acumulator.height:element.height;
+    });
 
-    let normalizedHeights=this.props.heights.map((element)=>{
-        return maxHeight*element/maximun
+    let normalizedHeights=this.props.data.map((element)=>{
+        return maxHeight*element.height/maximun
           });
-    let heightsStyle = normalizedHeights.sort(function(a, b){return a - b}).map((h)=>{
-        return {height: h+"px",marginTop:maxHeight-h}        
+
+    let barStyles = normalizedHeights.map((h)=>{
+        return {height: h+"px",marginTop:maxHeight-h,width:this.props.width}        
     });
 
-    let barStyles = heightsStyle.map((height, index)=>{
-        return {...height,...this.props.widths[index],background:this.props.background}
-    });
 
     let horizontalLineWidth = 0;
 
@@ -30,13 +34,13 @@ render(){
 
         let adjustLabel = 35;
         let adjustMarginLabel = (Style['height'].slice(0,-2)-adjustLabel)+"px"
-        horizontalLineWidth +=parseFloat(this.props.widths[index].width.slice(0,-2))+index*4;
+        horizontalLineWidth +=parseFloat(this.props.width.slice(0,-2))+index*4;
 
         bars.push(
             <div key= {index} className="bar" style={Style}>
                     <div className="horizontalLines" style={{width:horizontalLineWidth+"px"}}></div>
                     <p className="label" style={{marginTop:adjustMarginLabel}} >
-                        {this.props.labels[index]}
+                        {orderedData[index].label}
                     </p>
             </div>);
     });
@@ -53,7 +57,7 @@ let paddingTop = ( (maxHeight-(numberOfFrecuences+1.1)*frecuencesfontSize.fontSi
         paddingTop= (i===numberOfFrecuences)?0:paddingTop;
 
         frecuences.unshift(
-            <div key={i} style={{...frecuencesfontSize,paddingTop:paddingTop}}>{Math.round(maximun*i/numberOfFrecuences)}</div>
+            <div key={i} style={{...frecuencesfontSize,paddingTop:paddingTop}}>{i?(maximun*i/numberOfFrecuences).toFixed(1):i}</div>
         );
     }
 
@@ -81,11 +85,12 @@ let paddingTop = ( (maxHeight-(numberOfFrecuences+1.1)*frecuencesfontSize.fontSi
     });
 
 */        
-    let chartWidth = this.props.heights.length*this.props.widths[0].width.slice(0,-2)+3*this.props.heights.length+50;
+    let chartWidth = this.props.data.length*this.props.width.slice(0,-2)+3*this.props.data.length+50;
 
 
         return (
             <section>
+            <p className="title">{this.props.title}</p>
             <div className="frecuences" style={{height:maxHeight+"px"}} >{frecuences}</div>
             <div className="chart" style={{width:chartWidth+"px"}}>
                     {bars}
@@ -95,20 +100,14 @@ let paddingTop = ( (maxHeight-(numberOfFrecuences+1.1)*frecuencesfontSize.fontSi
     }
 }
 
-const defaultHeights = []
-const defaulWidths = []
-const backGroundColor = []
-for(let i=0;i<10;i++)  defaultHeights.push("40px")
-for(let i=0;i<20;i++)  defaulWidths.push({width:"30px"})
-// ojo con widthsssss1
+const data = []
+for(let i=0;i<10;i++)  data.push({height:"10",label:""})
 
 
 Bar.defaultProps = {
-    nbars:10,
-    heights:defaultHeights,
-    widths:defaulWidths,
-    background:"rgb(0, 102, 255)",
-    chartHeight:"200px"
+    data:data,
+    width:"30px",
+    title:""
 };
 
 export default Bar ;

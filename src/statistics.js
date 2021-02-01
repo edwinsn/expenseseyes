@@ -2,6 +2,8 @@
 
 export const hist = function(data,numbreOfIntervals=0){
 
+    data = data.filter(element=>!isNaN(element));
+
     if( !numbreOfIntervals ){
         if(data.lenght < 100)numbreOfIntervals = Math.ceil(5+data.lenght/20);
         else numbreOfIntervals = 10;
@@ -11,7 +13,7 @@ export const hist = function(data,numbreOfIntervals=0){
     let min = Math.min(...data);
     let intervals = [];
     let frecuences = [];
-    let aux=0;
+
     for(let i=1;i<=numbreOfIntervals;i++) {
         intervals.push((min+max*i/numbreOfIntervals))
         frecuences.push(0)
