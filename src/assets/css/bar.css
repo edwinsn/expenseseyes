@@ -37,7 +37,7 @@ section{
   width: 50px;
   transform: rotate(-90deg);
   font-size: small;
-  overflow: hidden;
+
   white-space: nowrap;
 }
 

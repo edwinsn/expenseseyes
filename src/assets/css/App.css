@@ -7,3 +7,8 @@
 .inline{
     display: inline-block;
 }
+
+.title{
+    color:rgb(0, 81, 255);
+    font-weight: bold;
+}

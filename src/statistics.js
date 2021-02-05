@@ -2,6 +2,8 @@
 
 export const hist = function(data,numbreOfIntervals=0){
 
+    if(!data[0])return null;
+
     data = data.filter(element=>!isNaN(element));
 
     if( !numbreOfIntervals ){
@@ -74,7 +76,9 @@ const groupby = function(data, variable){
 */
 
 export const groupBy = function(data, variables){
-    
+
+    if(!data[0])return null
+
     let groupedData = {"":data};
     
     variables.forEach( variable =>{

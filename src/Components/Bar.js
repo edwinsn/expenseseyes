@@ -6,6 +6,9 @@ class Bar extends Component{
 
 render(){
 
+
+    if(!this.props.data[0]) return null
+
     let bars = [] ;
     let maxHeight = 240;
 
@@ -15,9 +18,15 @@ render(){
 
 //bars styles
 
-    let maximun = this.props.data.reduce((acumulator,element)=>{
+    let maximun;
+
+    if(!this.props.data[1]){
+        maximun = this.props.data[0].height;
+    }
+    else{
+        maximun = this.props.data.reduce((acumulator,element)=>{
         return acumulator.height>element.height?acumulator.height:element.height;
-    });
+    });}
 
     let normalizedHeights=this.props.data.map((element)=>{
         return maxHeight*element.height/maximun
