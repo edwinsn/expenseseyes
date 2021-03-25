@@ -1,0 +1,50 @@
+body{
+  background-color: lightblue;
+}
+@viewport{
+  max-zoom: 300%;
+
+}
+.bar{
+  border:1px solid black;
+  float: left;
+}
+
+.chart{
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  overflow: hidden;
+}
+.chart >*{
+  background: rgb(0, 102, 255);
+}
+.frecuences{
+  float: left;
+}
+.horizontalLines{
+  border: 0.2px solid rgba(0, 0, 255, 0.575);
+  position: relative;
+  z-index: -1;
+  float:right;
+}
+
+section{
+  padding-top: 10px;
+  overflow: visible;
+}
+
+.label{
+  width: 50px;
+  transform: rotate(-90deg);
+  font-size: small;
+
+  white-space: nowrap;
+}
+
+.red{
+  border:1px solid red;
+}
+.title{
+  color:rgb(0, 81, 255);
+  font-weight: bold;
+}
