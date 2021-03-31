@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap');
 
-.center{
-    text-align: center;
+
+body{
+    background-color:#E3E6C7 ;
 }
 
 .inline{
-    display: inline-block;
+    display: inline;
 }
 
 .title{
     color:rgb(0, 81, 255);
     font-weight: bold;
+}
+.info{
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
 }

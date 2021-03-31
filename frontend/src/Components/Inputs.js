@@ -1,55 +1,54 @@
 import {Component} from 'react'
 import axios from 'axios';
 import '../assets/css/input.css'
-import {url} from '../url'
 //cant press twice same cathegory
+//change the notifications
 let activeCategory = false;
 
-export class Inputs extends Component{
+export function Inputs (){
     
-    constructor(props){
-        super(props)
-        this.postNewPurchase = this.postNewPurchase.bind(this);
-        this.postNewPurchaseOnEnter = this.postNewPurchaseOnEnter.bind(this);
-    }
-    
-    //
+
+    /*
     componentDidMount(){
         insertSavedCategories();
-    }
+    }*/
 
-    render(){
-        return (<div>
-            
-            <div className="categories inlineTable">
+
+        console.log("Inputs rendered")
+        return (
+        <div>
+            <p className="title">Log your purchase data</p>
+            <input placeholder="$price" type="number"></input>
+            <div className="categories">
                 <button onClick={selectCategory}>Food</button>
                 <button onClick={selectCategory}>Rent</button>
                 <button onClick={selectCategory}>Clothes</button>
                 <button onClick={selectCategory}>Tech</button>
             </div>
-    
-            <div className="left inlineTable">    
-                <div>
-                    <input onKeyUp={addCategoryOnEnter} onClick={activeOtherCathegoryInput} className="otherCategory" type ="text" placeholder="Other Type"></input>
-                </div>
-                <div className="categoryNotification notification"></div>
-                <input className="cost" onKeyUp={this.postNewPurchaseOnEnter} placeholder="$cost" type="number"></input>
-                <div className="priceNotification notification"></div>
-                <button  onClick={this.postNewPurchase}>Load Purchase</button>
-                <div className="purchaseDataNotification notification"></div>
-            </div>
+
+            <input onKeyUp={addCategoryOnEnter}
+              onClick={activeOtherCathegoryInput} 
+              className="otherCathegory" 
+              type ="text" 
+              placeholder="Other Type">
+            </input>                
+            <div className="categoryNotification notification"></div>
+            <div className="priceNotificadollartion notification"></div>
+            <button  onClick={postNewPurchase}>Load Purchase</button>
+            <div className="purchaseDataNotification notification"></div>
+
 
         </div>)
-    } 
+}
 
-    postNewPurchaseOnEnter(event){
+  function  postNewPurchaseOnEnter(event){
         if(event.keyCode===13){
             //
             this.postNewPurchase();
         }
     }
     
-    async postNewPurchase(){
+  async function postNewPurchase(){
     
         let {cathegory,price,dataIsValid} = verifyDataEntries();
         
@@ -57,7 +56,7 @@ export class Inputs extends Component{
     
             Notification("Loading",".categoryNotification");
     
-          let {status} = await axios.post(url+"/purchases",{
+          let {status} = await axios.post(process.env.PURCHASES_URI ,{
               category:cathegory,
               price:price
             })
@@ -85,7 +84,7 @@ export class Inputs extends Component{
     
     }
     
-}
+
 
 let activeOtherCathegoryInput=()=>{
     //if there is an cathegory selectec deselect it
@@ -145,7 +144,7 @@ let addCategory=(newcategoryText)=>{
 
 let postCategory=async(category)=>{
 
-    let endPoint = url+"/categories"
+    let endPoint = process.env.PURCHASES_URI 
     let {status} = await axios.post(endPoint,{name:category})
     if(status!==200){
         alert("Error saving the category: "+status)
@@ -181,9 +180,9 @@ let Notification = (notification,htmlClass)=>{
     document.querySelector(htmlClass).innerText=notification;
 }
 
-let insertSavedCategories=async()=>{
+/*let insertSavedCategories=async()=>{
 
-    let {data,status} = await axios.get(url+"/categories");
+    let {data,status} = await axios.get(process.env.PURCHASES_URI);
     if(status===200){ 
 
         let categories = document.querySelector(".categories");
@@ -200,4 +199,4 @@ let insertSavedCategories=async()=>{
         });
         
     }
-}
+}classsName="inline"*/

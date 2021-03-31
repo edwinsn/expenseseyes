@@ -9,14 +9,15 @@ purchaseControllers.getPurchases = async (req, res)=>{
 }
 
 purchaseControllers.postPurchase = async (req, res)=>{
-    const {userId, name, cathegory, price} = req.body
-    console.log(userId&&cathegory?true:false)
+    const {userId, name, cathegory, price, date} = req.body
+
     if(userId&&cathegory){
         const newPurchase = new purchaseModel({
             name,
             userId,
             cathegory,
-            price
+            price,
+            date
         })
 
         await newPurchase.save()

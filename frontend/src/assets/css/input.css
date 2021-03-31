@@ -4,37 +4,25 @@ button{
     box-shadow: 2px 2px rgba(0, 0, 0, 0.171);
     overflow: hidden;
     white-space: nowrap;
+    background-color: #0c814591;
+    height: 6vh;
+    min-height: 30px;
 }
 
-.cost {
-    display:inline;
-}
-
-.otherType{
-
-    width: 150px;
+.otherCathegory{
+    box-sizing: border-box;
+    width: 100%;
+    height:6vh;
 }
 
 .categories >*{
-    height: 30px;
-    width: 100px;
-}
-
-.inlineTable{
-    display: inline-table  ;
+    width: 50%
 }
 
 .notification{
     color: red;
     font-family: 'Raleway', sans-serif;
     font-size: small;
-    margin: 0;
-
-}
-
-.left{
- margin-left : 8px;
- text-align: left;
 }
 
 .loadingPurchase{
