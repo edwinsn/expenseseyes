@@ -33,3 +33,5 @@ src/setupTests.js
 
 #enviroment file
 backend/.env
+frontend/.env
+frontend/.eslintcache
