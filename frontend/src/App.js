@@ -1,33 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './assets/css/App.css'
-import {Inputs} from './Components/Inputs' 
-import {Charts,PurchaseDistributionByCathegory, PurchaseDistributionByPrice, PurchaseDistributionByDates} from  './Components/Charts'
+import {NewPurchase} from './Components/NewPurchase'
+import {Charts} from  './Components/Charts'
 import {PurchaseList} from './Components/PurchaseList'
+import {LoadingRectangles} from './Components/Loading'
+import axios from 'axios'
 
-function App () {
+class App extends Component {
 
+  constructor(props){
+    super(props)
+    this.state={Charts:<LoadingRectangles />, PurchaseList:<LoadingRectangles />}
+    this.getPurchases=this.getPurchases.bind(this)
+  }
 
-    console.log("App rendered")
-    let isWideEnought =  true
-    let listWidth = (isWideEnought?38:85)
-    let chartContainerWidth = (isWideEnought?(99-listWidth):85)
+  componentDidMount(){
+    this.getPurchases()
+  }
 
-    return (
-      <div className="App center">
-        <div className="info">  
-          
-          <div style={{width:listWidth+"%", boxSizing:"border-box",minWidth:"6.6cm"}}>
-            <Inputs /*update={()=>{this.update();}}*/ />
-            <PurchaseList/>          
-          </div>
-          
-          <div style={{width:chartContainerWidth+"%"}}>
-           <Charts /> 
-          </div>
+  render(){
+      console.log("App rendered")
+   
+      return (
+        <div className="App">
+            
+            <div className="purchasesInfo">
+              <NewPurchase update={this.getPurchases} className="newPurchase"/>
+              {this.state.PurchaseList}     
+            </div>
+
+            <div className="chartsPart">
+              {this.state.Charts}
+            </div>
 
         </div>
-      </div>
-  );
+    );
+  }
+
+  async getPurchases(){
+    console.log("getting data")
+    let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:1} })
+    if(status===200){
+        this.setState({
+        Charts:<Charts purchases={data}/>,
+        PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} /> })
+    }
+
+    return false;
+  }
+
 }
 
 export default App;

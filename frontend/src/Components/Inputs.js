@@ -1,4 +1,3 @@
-import {Component} from 'react'
 import axios from 'axios';
 import '../assets/css/input.css'
 //cant press twice same cathegory
@@ -7,31 +6,30 @@ let activeCategory = false;
 
 export function Inputs (){
     
-
     /*
     componentDidMount(){
         insertSavedCategories();
     }*/
 
-
-        console.log("Inputs rendered")
-        return (
+    console.log("Inputs rendered")
+    return (
         <div>
             <p className="title">Log your purchase data</p>
             <input placeholder="$price" type="number"></input>
+            <input placeholder="description" type="text"></input>
             <div className="categories">
-                <button onClick={selectCategory}>Food</button>
                 <button onClick={selectCategory}>Rent</button>
+                <button onClick={selectCategory}>Food</button>
                 <button onClick={selectCategory}>Clothes</button>
-                <button onClick={selectCategory}>Tech</button>
+                <button onClick={selectCategory}>Public Services</button>
             </div>
 
             <input onKeyUp={addCategoryOnEnter}
               onClick={activeOtherCathegoryInput} 
               className="otherCathegory" 
-              type ="text" 
+              type ="text"
               placeholder="Other Type">
-            </input>                
+            </input>
             <div className="categoryNotification notification"></div>
             <div className="priceNotificadollartion notification"></div>
             <button  onClick={postNewPurchase}>Load Purchase</button>

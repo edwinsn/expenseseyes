@@ -1,0 +1,65 @@
+.newPurchase{
+    width: 100%;
+}
+
+.fields{
+    width: 100%;
+    background-color: white;
+    height: 18vh;
+    border-radius: 4px;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 100px;
+
+}
+.fields >*{
+    box-sizing: border-box;
+    border-radius: 4px;
+    opacity: 0.8;
+    border: 0;
+}
+
+.options{
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    height: 80%;
+    padding: 0;
+}
+.options >*{
+    width:88%;
+    box-sizing: border-box;
+    width: 100%;
+    height: 32%;
+    border: 0;
+}
+
+.newPrice{
+
+  width:30%;
+  background-color: hsl(152, 70%, 63%);
+  height: 78%;
+  text-align: center;
+}
+
+.send{
+    width: 100%;
+    height: 5vh;
+    min-height: 0.8cm;
+}
+
+.sendButtonContainer{
+    background-color: white;
+    height: 5vh;
+}
+
+.newCathegory{
+    opacity: 1;
+    min-height: 10px;
+    box-sizing: border-box;
+}

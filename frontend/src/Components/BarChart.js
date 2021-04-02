@@ -6,13 +6,14 @@ class Bar extends Component{
 
 render(){
 
-    console.log("bar rendered")
-
     if(!this.props.data[0]) return null
 
 //order data
 
-    let orderedData = this.props.orderData?this.props.data.sort((a,b)=>{return a.height-b.height}):this.props.data
+    let orderedData = (this.props.orderData?this.props.data.sort((a,b)=>{return a.height-b.height}):
+                                           this.props.data).filter((e)=>{
+                                               return e.height?true:false
+                                           })
 
 //bars styles
 

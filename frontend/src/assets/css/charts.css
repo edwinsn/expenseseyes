@@ -1,11 +1,16 @@
 .charts{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     border: 2px solid purple;
     min-width: 6.6cm;
+    height: 100%;
+    box-sizing: border-box;
 }
 .charts>*{
-    width: 48%;
-    height: 50%;
+    width: 46%;
+    height: 46%;
+    margin: 2%;
     min-width: 6.5cm;
+    min-height: 5cm;
 }

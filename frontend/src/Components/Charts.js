@@ -1,16 +1,7 @@
-import {Component, useState} from 'react'
+import {Component} from 'react'
 import {hist,groupBy} from '../statistics'
-import axios from 'axios';
 import BarChart from './BarChart'
 import '../assets/css/charts.css'
-
-const getPurchases = async()=>{
-  console.log("getting data")
-    let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:1} })
-    if(status===200)return data
-    return false;
-}
-
 
 class PurchaseDistributionByPrice extends Component{
  
@@ -54,7 +45,7 @@ class PurchaseDistributionByDates extends Component{
 
     let numberOfIntervals = 3 
     let dates = this.props.purchases.map((e)=>{
-    return parseInt(e.date.slice(0,4)+ e.date.slice(5,7)+e.date.slice(8,10))
+    return parseInt(e.date.slice(2,4)+ e.date.slice(5,7)+e.date.slice(8,10))
     })
 
     let {frecuences,labels}=hist(dates, numberOfIntervals, true)
@@ -68,25 +59,11 @@ class PurchaseDistributionByDates extends Component{
 
 class Charts extends Component{
 
-  constructor(props){
-    super(props)
-    this.state={chart1:null, chart2:null, chart3:null}
-  }
-
-  componentDidMount(){
-    let purchases = getPurchases()
-    purchases.then((res)=>{
-      this.setState({chart1:<PurchaseDistributionByPrice purchases={res}/>})
-      this.setState({chart2:<PurchaseDistributionByCathegory purchases={res}/>})
-      this.setState({chart3:<PurchaseDistributionByDates purchases={res}/>})
-    })
-  }
-
   render(){
     return (<div className="charts"  style={{width:"100%", height:"100%"}}>
-            {this.state.chart1}
-            {this.state.chart2}
-            {this.state.chart3}
+             <PurchaseDistributionByPrice purchases={this.props.purchases}/>
+             <PurchaseDistributionByCathegory purchases={this.props.purchases}/>
+             <PurchaseDistributionByDates purchases={this.props.purchases}/>
           </div>)
   }
 }

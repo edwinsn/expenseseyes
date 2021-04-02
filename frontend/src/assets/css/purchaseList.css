@@ -1,4 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
+
 .purchaseList{
-    background-color: white;
-    height: 50vh;
+    font-family: 'New Tegomin', serif; 
+    width: 100%;
+    overflow-y: scroll;
+    /*border: 1px solid red;*/
+}
+.purchase{
+    width: 100%;
+    height: 5vh;
+    border-radius: 4px;
+    margin-bottom: 0.3vh;
+    background-color: #E3E6C7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 25px;
+    font-weight: 800;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none; 
+}
+.purchase::-webkit-scrollbar {
+  display: none;
+}
+
+.purchase >*{
+  white-space: nowrap;
+  overflow: hidden;
+}
+.purchaseName{
+    width: 25%;
+}
+.purchasePrice{
+    background-color: #5DE2A3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23%; 
+    text-align: center;
+    height: 100%;
+    color:#383A34;
+    font-weight: 1000;
+}
+.purchaseCathegory{
+    width:18%;
+    font-size:small;
+    text-align: center;
+}
+.purchaseDate{
+    width: 16%;
+    font-size: small;
+}
+.purchasesTitle{
+    margin-left: 2%;
+    font-weight: bolder;
+    font-size: large;
+}
+.deletePurchase{
+    color: red;
+    margin-right:2%;
+    cursor: pointer;
+}
+.listTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    height: 13%;
 }

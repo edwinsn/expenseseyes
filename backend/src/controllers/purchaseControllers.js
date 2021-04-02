@@ -11,7 +11,7 @@ purchaseControllers.getPurchases = async (req, res)=>{
 purchaseControllers.postPurchase = async (req, res)=>{
     const {userId, name, cathegory, price, date} = req.body
 
-    if(userId&&cathegory){
+    if(userId&&price){
         const newPurchase = new purchaseModel({
             name,
             userId,
