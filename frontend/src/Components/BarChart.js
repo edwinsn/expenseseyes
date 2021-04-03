@@ -70,7 +70,7 @@ render(){
 
     return (
         <div className="barchart">
-            <div className="Bartitle">{this.props.title}</div>
+            <div className="barTitle">{this.props.title}</div>
             <div className="container">
                 <div className="frecuences">
                         {frecuences}

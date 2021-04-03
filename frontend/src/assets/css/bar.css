@@ -30,9 +30,9 @@
   width: 100%;
 }
 
-.Bartitle{
+.barTitle{
   color:rgb(0, 81, 255);
-  font-weight: bold;  
+  font-weight: bolder;  
   height: 15%;
 }
 

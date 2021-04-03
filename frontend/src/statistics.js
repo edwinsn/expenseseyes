@@ -18,12 +18,14 @@ export const hist = function(data,numbreOfIntervals=0, dates=false){
 
     let intervals = [];
     let frecuences = [];
+    let totals = [];
 
     numbreOfIntervals = numbreOfIntervals>unique(data).length?unique(data).length:numbreOfIntervals
 
     for(let i=0;i<=numbreOfIntervals;i++) {
         intervals.push((min+(max-min)*i/numbreOfIntervals))
         frecuences.push(0)
+        totals.push(0)
     }
 
 
@@ -35,6 +37,7 @@ export const hist = function(data,numbreOfIntervals=0, dates=false){
 
             if(element<=intervals[index]){
                 frecuences[index-1] += 1;
+                totals[index-1]+=parseFloat(element)
                 break
             }
         }
@@ -54,7 +57,7 @@ export const hist = function(data,numbreOfIntervals=0, dates=false){
         });
     }
 
-    return {"labels":labels, "frecuences":frecuences}
+    return {labels, frecuences, totals}
     
 }
 

@@ -1,7 +1,3 @@
-.newPurchase{
-    width: 100%;
-}
-
 .fields{
     width: 100%;
     background-color: white;
@@ -19,6 +15,24 @@
     border-radius: 4px;
     opacity: 0.8;
     border: 0;
+}
+
+.newCathegory{
+    opacity: 1;
+    min-height: 10px;
+    box-sizing: border-box;
+}
+
+.newPurchase{
+    width: 100%;
+}
+
+.newPrice{
+
+  width:30%;
+  background-color: hsl(152, 70%, 63%);
+  height: 78%;
+  text-align: center;
 }
 
 .options{
@@ -39,14 +53,6 @@
     border: 0;
 }
 
-.newPrice{
-
-  width:30%;
-  background-color: hsl(152, 70%, 63%);
-  height: 78%;
-  text-align: center;
-}
-
 .send{
     width: 100%;
     height: 5vh;
@@ -56,10 +62,4 @@
 .sendButtonContainer{
     background-color: white;
     height: 5vh;
-}
-
-.newCathegory{
-    opacity: 1;
-    min-height: 10px;
-    box-sizing: border-box;
 }

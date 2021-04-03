@@ -1,8 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap');
+.deletePurchase{
+    color: red;
+    margin-right:2%;
+    cursor: pointer;
+}
+.listTitle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    height: 13%;
+}
+
+.newPurchaseTitle{
+    font-weight: 1000;
+}
 
 .purchaseList{
-    font-family: 'New Tegomin', serif; 
+    
     width: 100%;
     overflow-y: scroll;
     /*border: 1px solid red;*/
@@ -56,16 +70,4 @@
     margin-left: 2%;
     font-weight: bolder;
     font-size: large;
-}
-.deletePurchase{
-    color: red;
-    margin-right:2%;
-    cursor: pointer;
-}
-.listTitle{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 30%;
-    height: 13%;
 }

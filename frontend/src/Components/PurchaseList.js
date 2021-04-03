@@ -9,7 +9,7 @@ export class PurchaseList extends Component{
     constructor(props){
         super(props)
         this.deletePurchase=this.deletePurchase.bind(this)
-        this.state={loading:null}
+        this.state={loading:<LoadingCircles/>}
     }
 
 
@@ -32,16 +32,17 @@ export class PurchaseList extends Component{
     return <div className="purchaseList" >
                 <div className="listTitle">
                     <span className="purchasesTitle">Purchases</span>
-                    {this.state.loading}
+                    {this.props.loading.deleting&&this.state.loading}
                 </div>
                 {listOfPurchases}
            </div>
     }
 
     async deletePurchase(id){
-        this.setState({loading:<LoadingCircles />})
-        let {status}=await axios.delete(process.env.REACT_APP_PURCHASES_URI+id)
+        this.props.loading.deleting=true
+        this.setState({reload:true})
+        await axios.delete(process.env.REACT_APP_PURCHASES_URI+id)
         this.props.update()
-        this.setState({loading:null})
+        
     }
 }

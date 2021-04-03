@@ -14,3 +14,8 @@
     min-width: 6.5cm;
     min-height: 5cm;
 }
+
+.graphBy{
+    position: relative;
+    float: right;
+}

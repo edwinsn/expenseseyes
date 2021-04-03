@@ -23,10 +23,10 @@ export class NewPurchase extends Component{
     }
 
     render(){
-
+        console.log("Rendered new Purchase")
         return (
             <div className="newPurchase">
-                <p>Log a new Purchase</p>
+                <p className="newPurchaseTitle">Log a new Purchase</p>
                 <form onSubmit={this.sendPurchase}>
                     <div className="fields">
                         <input className="newPrice" placeholder="$price" type="number" required></input>
@@ -72,12 +72,12 @@ export class NewPurchase extends Component{
             name:ev.target[1].value,
             date
         }
-        console.log(newPurchase)
+
         const {status}=await axios.post(process.env.REACT_APP_PURCHASES_URI, newPurchase)
         
         if(status===200){
             console.log("Data saved")
-            this.props.update()
+            await this.props.update()
         }
         else{console.log("Error: "+ status)}
         this.setState({sendButton:<input type="submit" className="send" value="send"></input>})
@@ -85,7 +85,6 @@ export class NewPurchase extends Component{
 
 
     selectCathegory(ev){
-    
         this.setState({
             cathegorySelected:{value:ev.value, label:ev.value}
         })

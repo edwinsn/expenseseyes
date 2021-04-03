@@ -1,23 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
 
 
 body{
     background-color:#E3E6C7 ;
+    font-family: 'New Tegomin', serif; 
+
 }
 
-.inline{
-    display: inline;
-}
-
-.title{
-    color:rgb(0, 81, 255);
-    font-weight: bold;
-}
 .App{
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
     height: 100vh;
+}
+
+.chartsPart{
+    margin:1%;
+    width: 58%;
+    min-width:9cm;
+    max-width: 20cm;
 }
 
 .newPurchase{
@@ -39,9 +40,7 @@ body{
     min-width: 7cm;
     max-width: 35cm;
 }
-.chartsPart{
-    margin:1%;
-    width: 58%;
-    min-width:9cm;
-    max-width: 20cm;
+.title{
+    color:rgb(0, 81, 255);
+    font-weight: bold;
 }

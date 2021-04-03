@@ -43,7 +43,7 @@ class App extends Component {
     if(status===200){
         this.setState({
         Charts:<Charts purchases={data}/>,
-        PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} /> })
+        PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} loading={{deleting:false}} /> })
     }
 
     return false;
