@@ -1,5 +1,4 @@
 .lds-facebook {
-    border:2px solid red;
     display: inline-block;
     position: relative;
     width: 80px;
@@ -16,11 +15,11 @@
   }
   .lds-facebook div:nth-child(1) {
     left: 8px;
-    animation-delay: -0.24s;
+    animation-delay: -0.2s;
   }
   .lds-facebook div:nth-child(2) {
     left: 32px;
-    animation-delay: -0.12s;
+    animation-delay: -0.1s;
   }
   .lds-facebook div:nth-child(3) {
     left: 56px;

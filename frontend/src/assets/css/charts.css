@@ -1,16 +1,17 @@
 .charts{
+ 
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    border: 2px solid purple;
-    min-width: 6.6cm;
+    justify-content: space-around;
+    align-items: center;
     height: 100%;
     box-sizing: border-box;
 }
 .charts>*{
-    width: 46%;
+    flex-basis: 40%;
+    flex-grow: 0.7;
     height: 46%;
-    margin: 2%;
+    margin: 1%;
     min-width: 6.5cm;
     min-height: 5cm;
 }

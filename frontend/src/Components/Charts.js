@@ -8,31 +8,50 @@ class PurchaseDistributionByPrice extends Component{
   constructor(props){
 
     super(props)
+
+    const {dataByCounts, dataByPrice} = this.generateBarChartData()
+
+    this.dataByPrice=dataByPrice
+    this.dataByCounts=dataByCounts
+    this.renderId=this.props.renderId
+
+    this.state={
+      orderByPrice:true
+    }
+  }
+
+  generateBarChartData(){
+
     let prices = this.props.purchases.map(element=>element.price)
 
     if(!prices[0])return null;
-      
+
     let {frecuences,labels, totals} = hist(prices);
     let dataByCounts = [];
     let dataByPrice = [];
+    
 
     for(let i=0;i<frecuences.length;i++){
       dataByCounts.push({label:labels[i],height:frecuences[i]})
       dataByPrice.push({label:labels[i],height:totals[i]})
     }
 
-    this.state={
-      dataByCounts,
-      dataByPrice,
-      orderByPrice:true
-    }
+    return {dataByCounts, dataByPrice}
   }
 
   render(){
 
     console.log("Chart1 rendered")
 
-    let data = this.state.orderByPrice?this.state.dataByPrice:this.state.dataByCounts
+    if(this.props.renderId!==this.renderId){
+      this.renderId=this.props.renderId
+      let {dataByCounts, dataByPrice} = this.generateBarChartData()
+      this.dataByPrice=dataByPrice
+      this.dataByCounts=dataByCounts
+    }    
+    
+    let data = this.state.orderByPrice?this.dataByPrice:this.dataByCounts
+    
     return ( 
     <div>
         <select className="graphBy">
@@ -56,7 +75,23 @@ class PurchaseDistributionByCathegory extends Component{
   constructor(props){
 
     super(props)
-    let groupedData = groupBy(this.props.purchases,["cathegory"])
+
+    const {dataByCounts, dataByPrice} = this.generateBarChartData()
+    this.dataByCounts = dataByCounts
+    this.dataByPrice= dataByPrice 
+
+    this.renderId=this.props.renderId
+
+    this.state={
+      orderByPrice:true
+    }
+
+  }
+
+  generateBarChartData(){
+
+   let groupedData = groupBy(this.props.purchases,["cathegory"])
+    
     let dataByCounts = []
     let dataByPrice=[]
 
@@ -67,20 +102,23 @@ class PurchaseDistributionByCathegory extends Component{
         groupedData[key].forEach((e)=>{sum+=e.price})
         dataByPrice.push({label:key,height:sum})
     }
-
-    this.state={
-      dataByCounts,
-      dataByPrice,
-      orderByPrice:true
-    }
+    return {dataByCounts, dataByPrice}
 
   }
+
 
   render(){
 
   console.log("Chart2 rendered")
 
-  let data=this.state.orderByPrice?this.state.dataByPrice:this.state.dataByCounts
+    if(this.props.renderId!==this.renderId){
+      this.renderId=this.props.renderId
+      let {dataByCounts, dataByPrice} = this.generateBarChartData()
+      this.dataByPrice=dataByPrice
+      this.dataByCounts=dataByCounts
+    }    
+
+  let data=this.state.orderByPrice?this.dataByPrice:this.dataByCounts
 
   return (
     <div>
@@ -105,27 +143,47 @@ class PurchaseDistributionByDates extends Component{
   constructor(props){
 
     super(props)
-    let numberOfIntervals = 3 
-    let dates = this.props.purchases.map((e)=>{
-    return parseInt(e.date.slice(2,4)+ e.date.slice(5,7)+e.date.slice(8,10))
-    })
 
-    let {frecuences,labels, totals}=hist(dates, numberOfIntervals, true)
-    let dataByCounts=frecuences.map((e,i)=>{return {label:labels[i], height:e}})
-    let dataByPrice=totals.map((e,i)=>{return {label:labels[i], height:e}})
+    this.renderId=this.props.renderId
+
+    const {dataByCounts, dataByPrice} = this.generateBarChartData()
+    
+      this.dataByCounts=dataByCounts
+      this.dataByPrice=dataByPrice
+
     this.state={
-      dataByCounts,
-      dataByPrice,
       orderByPrice:true
     } 
   
   }
 
+  generateBarChartData(){
+
+    let numberOfIntervals = 3 
+    let dates = this.props.purchases.map((e)=>{
+    return parseInt(e.date.slice(2,4)+ e.date.slice(5,7)+e.date.slice(8,10))
+    })
+    let pricesBysDates= this.props.purchases.map((e)=>{return e.price})
+
+    let {frecuences,labels, totals}=hist(dates, numberOfIntervals, true, pricesBysDates)
+    let dataByCounts=frecuences.map((e,i)=>{return {label:labels[i], height:e}})
+    let dataByPrice=totals.map((e,i)=>{return {label:labels[i], height:e}})
+
+    return {dataByPrice, dataByCounts}
+  }
 
   render(){
     console.log("Chart3 rendered!")
 
-    let data=this.state.orderByPrice?this.state.dataByPrice:this.state.dataByCounts
+
+    if(this.props.renderId!==this.renderId){
+      this.renderId=this.props.renderId
+      let {dataByCounts, dataByPrice} = this.generateBarChartData()
+      this.dataByPrice=dataByPrice
+      this.dataByCounts=dataByCounts
+    }    
+
+    let data=this.state.orderByPrice?this.dataByPrice:this.dataByCounts
 
     return (
       <div>
@@ -146,11 +204,15 @@ class PurchaseDistributionByDates extends Component{
 
 class Charts extends Component{
 
+
   render(){
-    return (<div className="charts"  style={{width:"100%", height:"100%"}}>
-             <PurchaseDistributionByPrice purchases={this.props.purchases} orderByPrice={false}/>
-             <PurchaseDistributionByCathegory purchases={this.props.purchases} />
-             <PurchaseDistributionByDates purchases={this.props.purchases}/>
+    
+  let renderId = Math.random()
+
+    return (<div className="charts"  style={{width:"100%", height:"100%"}} >
+             <PurchaseDistributionByPrice purchases={this.props.purchases} orderByPrice={false} renderId={renderId}/>
+             <PurchaseDistributionByCathegory purchases={this.props.purchases} renderId={renderId}/>
+             <PurchaseDistributionByDates purchases={this.props.purchases} renderId={renderId}/>
           </div>)
   }
 }

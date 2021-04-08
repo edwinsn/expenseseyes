@@ -26,18 +26,19 @@ export class NewPurchase extends Component{
         console.log("Rendered new Purchase")
         return (
             <div className="newPurchase">
-                <p className="newPurchaseTitle">Log a new Purchase</p>
-                <form onSubmit={this.sendPurchase}>
+                <div className="newPurchaseTitle">Log a new Purchase</div>
+                <form className="newPurchaseForm"onSubmit={this.sendPurchase}>
                     <div className="fields">
                         <input className="newPrice" placeholder="$price" type="number" required></input>
                         <div className="options">
                             <input className="newName" placeholder="name" type="text"></input>
+                            <input className="newDate" type="date" placeholder="mm/dd/yyyy"></input>
                             <Select onKeyDown={this.addCathegory} 
                             value={this.state.cathegorySelected}
                             onChange={this.selectCathegory}
                             className="newCathegory" 
-                            options={this.state.options} />
-                            <input className="newDate" type="date"></input>
+                            options={this.state.options}
+                            />
                         </div>
                     </div>
                     <div className="sendButtonContainer">
@@ -62,7 +63,7 @@ export class NewPurchase extends Component{
         let cathegory=this.state.cathegorySelected.value
         cathegory=cathegory!=="noCathegory"?cathegory:"various"
 
-        let date=ev.target[3].value
+        let date=ev.target[2].value
         date=date?date:new Date()
 
         const newPurchase={

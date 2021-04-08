@@ -4,40 +4,47 @@
 body{
     background-color:#E3E6C7 ;
     font-family: 'New Tegomin', serif; 
-
 }
 
 .App{
-    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     height: 100vh;
+    justify-content: center;
 }
 
 .chartsPart{
-    margin:1%;
-    width: 58%;
-    min-width:9cm;
+
+    align-items: center;
+    display: flex;
+    flex-basis: 58%;
+    flex-grow: 1;
+    min-width:7cm;
     max-width: 20cm;
+    justify-content: center;
+    
 }
 
 .newPurchase{
-    height: 32vh;
+    /*border: 3px solid red;*/
+    height: 40%;
+    min-height: 4.5cm;
 }
 .purchaseList{
-    height: 67vh;
+    height: 60%;
+    min-height: 4.5cm;
 }
 
 .purchasesInfo{
-    min-width:"6.6cm";
-    box-sizing: border-box;
-    border: 1px solid blue;
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
     align-items: center;
-    width: 38%;
-    min-width: 7cm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 38%;
+    margin: 0 1%;
+    flex-grow: 0.9;
+    height: 100vh;
+    min-width: 5.6cm;
     max-width: 35cm;
 }
 .title{

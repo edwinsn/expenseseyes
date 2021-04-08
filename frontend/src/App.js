@@ -39,11 +39,13 @@ class App extends Component {
 
   async getPurchases(){
     console.log("getting data")
+
     let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:1} })
+
     if(status===200){
         this.setState({
         Charts:<Charts purchases={data}/>,
-        PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} loading={{deleting:false}} /> })
+        PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} loading={{deleting:false}}/> })
     }
 
     return false;

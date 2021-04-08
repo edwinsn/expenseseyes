@@ -1,48 +1,54 @@
 .fields{
     width: 100%;
+    height: 75%;
     background-color: white;
-    height: 18vh;
     border-radius: 4px;
-    min-height: 30px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    min-height: 100px;
-
+    min-height:1.5cm;
 }
+
 .fields >*{
     box-sizing: border-box;
     border-radius: 4px;
-    opacity: 0.8;
     border: 0;
 }
 
 .newCathegory{
-    opacity: 1;
-    min-height: 10px;
-    box-sizing: border-box;
+    height: 0.5cm;
 }
 
 .newPurchase{
     width: 100%;
 }
 
-.newPrice{
+.newPurchaseForm{
+    height: 80%;
+}
 
+.newPrice{
   width:30%;
   background-color: hsl(152, 70%, 63%);
   height: 78%;
   text-align: center;
 }
 
-.options{
+.newPurchaseTitle{
     
+    height: 20%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: center;   
+}
+
+.options{
+    display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: space-between;
     width: 60%;
-    height: 80%;
+    height:80%;
     padding: 0;
 }
 .options >*{
@@ -50,16 +56,23 @@
     box-sizing: border-box;
     width: 100%;
     height: 32%;
-    border: 0;
 }
 
 .send{
     width: 100%;
-    height: 5vh;
-    min-height: 0.8cm;
+    height: 100%;
 }
 
 .sendButtonContainer{
     background-color: white;
-    height: 5vh;
+    height: 25%;
+    width: 100%;
+}
+
+input[type="date"]:before {
+  color: #8E949E;
+  content: attr(placeholder) !important;
+}
+input[type="date"]:focus:before {
+  content: '' !important;
 }

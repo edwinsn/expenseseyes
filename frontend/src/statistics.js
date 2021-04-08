@@ -1,6 +1,6 @@
 // the user will have an slide for intervals
 
-export const hist = function(data,numbreOfIntervals=0, dates=false){
+export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydates=[]){
 
     if(!data[0])return null;
     //console.log(data)
@@ -37,25 +37,32 @@ export const hist = function(data,numbreOfIntervals=0, dates=false){
 
             if(element<=intervals[index]){
                 frecuences[index-1] += 1;
+                if(!dates){
                 totals[index-1]+=parseFloat(element)
+                }
                 break
             }
         }
     });
 
     let labels=[]
-//
-    if(dates){
 
+    if(dates){
+        let acumulatedFrecuences=0
         for(let i=1;i<intervals.length;i++){
             let aux=  Math.ceil(intervals[i-1])===Math.ceil(intervals[i])?Math.ceil(intervals[i]+1):Math.ceil(intervals[i])
             labels.push(Math.ceil(intervals[i-1]) +" - "+aux);
+
+            totals[i-1] = sum(pricesBydates.slice(acumulatedFrecuences, acumulatedFrecuences+frecuences[i-1]))
+            acumulatedFrecuences+=parseInt(frecuences[i-1])
         }
     }else{
-        labels = intervals.map((element,i,int)=>{
-            return Math.round(int[i-1]?int[i-1]:0) +" - "+Math.round(element);
-        });
+        for(let i=0;i<intervals.length-1;i++){
+            labels.push(Math.round(intervals[i])+" - "+Math.round(intervals[i+1]))
+        }
+
     }
+    console.log({labels, intervals, frecuences, totals})
 
     return {labels, frecuences, totals}
     
@@ -66,9 +73,10 @@ let data = [];
 for (let i =0;i<10;i++)data.push(Math.random()*100);
 console.log(hist(data))*/
 
-/*const sum = function(data){
-    return 0//data.reduce((acumulator, current)=>{acumulator+current})
-}*/
+const sum = function(data){
+    if(data[0])return data.reduce((acumulator, current)=>{return acumulator+current})
+    return 0 
+}
 
 /*const mean = function(data){
     return sum(data)/data.lenght;
