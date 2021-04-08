@@ -35,3 +35,4 @@ src/setupTests.js
 backend/.env
 frontend/.env
 frontend/.eslintcache
+frontend/src/firebase-config.js
