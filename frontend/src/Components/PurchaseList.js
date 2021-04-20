@@ -16,6 +16,10 @@ export class PurchaseList extends Component{
     render(){
     console.log("Purchase list rendered")
 
+    let list
+
+    if(this.props.purchases[0]){
+
     let listOfPurchases = []
     this.props.purchases.forEach(
         (e)=>{
@@ -24,18 +28,29 @@ export class PurchaseList extends Component{
                 <span className="purchasePrice">${e.price}</span>
                 <span className="purchaseName">{e.name}</span>
                 <span className="purchaseCathegory">{e.cathegory}</span>
-                <span className="purchaseDate">{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</span>
+                <span className="purchaseDate">{`${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}</span>
                 <span className="deletePurchase" onClick={()=>{this.deletePurchase(e._id);}}>X</span>
             </div>)
         })
 
-    return <div className="purchaseList" >
-                <div className="listTitle">
-                    <span className="purchasesTitle">Purchases</span>
-                    {this.props.loading.deleting&&this.state.loading}
-                </div>
+ 
+
+    list=(<>
                 {listOfPurchases}
-           </div>
+          </>)
+    }
+    else{
+        list=(<p>Sin compras Aún</p>)
+    }
+    return (
+        <div className="purchaseList" >
+            <div className="listTitle">
+                <span className="purchasesTitle">Compras</span>
+                    {this.props.loading.deleting&&this.state.loading}
+            </div>
+            {list}
+        </div>
+    )
     }
 
     async deletePurchase(id){

@@ -26,7 +26,7 @@ export class NewPurchase extends Component{
         console.log("Rendered new Purchase")
         return (
             <div className="newPurchase">
-                <div className="newPurchaseTitle">Log a new Purchase</div>
+                <div className="newPurchaseTitle">Registra tus compras</div>
                 <form className="newPurchaseForm"onSubmit={this.sendPurchase}>
                     <div className="fields">
                         <input className="newPrice" placeholder="$price" type="number" required></input>
@@ -67,7 +67,7 @@ export class NewPurchase extends Component{
         date=date?date:new Date()
 
         const newPurchase={
-            userId:1,
+            userId:this.props.userId,
             price:ev.target[0].value,
             cathegory,
             name:ev.target[1].value,

@@ -2,7 +2,7 @@ import {Component} from 'react'
 import {hist,groupBy} from '../statistics'
 import BarChart from './BarChart'
 import '../assets/css/charts.css'
-
+import noDataIcon from '../assets/images/noData.svg'
 class PurchaseDistributionByPrice extends Component{
  
   constructor(props){
@@ -58,13 +58,13 @@ class PurchaseDistributionByPrice extends Component{
           <option onClick={()=>{
             if(!this.state.orderByPrice)this.setState({orderByPrice:true})
           }
-        }>Prices</option>
+        }>Precios</option>
           <option onClick={()=>{
             this.setState({orderByPrice:false})
           }
-          }>Counts</option>
+          }>Cantidad</option>
         </select>
-       <BarChart data={data} title="Prices Distribution"/>
+       <BarChart data={data} title="Distribución de precios"/>
     </div>
     )
   }
@@ -126,13 +126,13 @@ class PurchaseDistributionByCathegory extends Component{
       <option onClick={()=>{
         if(!this.state.orderByPrice)this.setState({orderByPrice:true})
         }
-      }>Prices</option>
+      }>Precios</option>
       <option onClick={()=>{
         this.setState({orderByPrice:false})
        }
-      }>Counts</option>
+      }>Cantidad</option>
       </select>
-      <BarChart data={data} orderData={true}  title="Count by Cathegories"/>
+      <BarChart data={data} orderData={true}  title="Distribución de Categorias"/>
     </div>
     )
   }
@@ -191,13 +191,13 @@ class PurchaseDistributionByDates extends Component{
           <option onClick={()=>{
             if(!this.state.orderByPrice)this.setState({orderByPrice:true})
           }
-        }>Prices</option>
+        }>Precios</option>
           <option onClick={()=>{
             this.setState({orderByPrice:false})
           }
-          }>Counts</option>
+          }>Cantidad</option>
         </select>
-        <BarChart data={data} title="Dates" />
+        <BarChart data={data} title="Compras en el tiempo" />
       </div>)
   }
 }
@@ -207,13 +207,22 @@ class Charts extends Component{
 
   render(){
     
+
   let renderId = Math.random()
 
+  if(this.props.purchases[0]){
     return (<div className="charts"  style={{width:"100%", height:"100%"}} >
              <PurchaseDistributionByPrice purchases={this.props.purchases} orderByPrice={false} renderId={renderId}/>
              <PurchaseDistributionByCathegory purchases={this.props.purchases} renderId={renderId}/>
              <PurchaseDistributionByDates purchases={this.props.purchases} renderId={renderId}/>
           </div>)
+  }
+  return (
+  <div className="noData">
+  <img src={noDataIcon} className="noDataIcon" alt="sin compras"/>
+  <p>Registra tus compras</p>
+  </div>
+  )
   }
 }
 

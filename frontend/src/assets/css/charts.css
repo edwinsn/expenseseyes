@@ -20,3 +20,13 @@
     position: relative;
     float: right;
 }
+
+.noData{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.noDataIcon{
+    height: 50%;
+}

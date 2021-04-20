@@ -49,9 +49,11 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydate
 
     if(dates){
         let acumulatedFrecuences=0
+
+
         for(let i=1;i<intervals.length;i++){
             let aux=  Math.ceil(intervals[i-1])===Math.ceil(intervals[i])?Math.ceil(intervals[i]+1):Math.ceil(intervals[i])
-            labels.push(Math.ceil(intervals[i-1]) +" - "+aux);
+            labels.push(formatDate( Math.ceil(intervals[i-1])) +" : "+formatDate(aux));
 
             totals[i-1] = sum(pricesBydates.slice(acumulatedFrecuences, acumulatedFrecuences+frecuences[i-1]))
             acumulatedFrecuences+=parseInt(frecuences[i-1])
@@ -62,7 +64,6 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydate
         }
 
     }
-    console.log({labels, intervals, frecuences, totals})
 
     return {labels, frecuences, totals}
     
@@ -72,6 +73,54 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydate
 let data = [];
 for (let i =0;i<10;i++)data.push(Math.random()*100);
 console.log(hist(data))*/
+
+const formatDate = function(date){
+
+    let formatedDate
+    date=date+""
+
+    switch (date.slice(2,4)) {
+                case "01":
+                    formatedDate="20"+date.slice(0,2)+" Ene"
+                    break;
+                 case "02":
+                    formatedDate="Feb"
+                    break;
+                case "03":
+                    formatedDate="Mar"
+                    break;
+                case "04":
+                    formatedDate="Abr"
+                    break;
+                case "05":
+                    formatedDate="May"
+                    break;
+                case "06":
+                    formatedDate="Jun"
+                    break;
+                case "07":
+                    formatedDate="Jul"
+                    break;
+                case "08":
+                    formatedDate="Ago"
+                    break;
+                case "09":
+                    formatedDate="Sep"
+                    break;
+                case "10":
+                    formatedDate="Oct"
+                    break;
+                case "11":
+                    formatedDate="Nov"
+                    break;
+                default:
+                    formatedDate="Dic"
+                    break;
+            }
+    formatedDate = formatedDate+"-"+date.slice(4,6)
+
+    return formatedDate
+}
 
 const sum = function(data){
     if(data[0])return data.reduce((acumulator, current)=>{return acumulator+current})

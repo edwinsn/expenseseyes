@@ -28,8 +28,14 @@ render(){
           });
 
 
+    
+    let totalBarsWidth = 100
+
+    if(orderedData.length===1)totalBarsWidth = 50
+    else if(orderedData.length===2)totalBarsWidth=70
+
     let barStyles = normalizedHeights.map((h)=>{
-        return {height: h+"%",width:(100/orderedData.length)+"%"}
+        return {height: h+"%",minWidth:(totalBarsWidth/orderedData.length)+"%"}
     });
 
     let bars = [] ;
@@ -38,7 +44,7 @@ render(){
 
         let noHeight = style.height.slice(0,-1)==="0"
         let horizontalLineWidth = noHeight?0:(index+1)*102
-        let horizontalLineHeight =  noHeight?0:"0.7vh"
+        let horizontalLineHeight =  noHeight?0:"0.2vh"
 
         bars.push(
             <div key= {index} className="bar" style={style}>

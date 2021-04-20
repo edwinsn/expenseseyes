@@ -1,0 +1,106 @@
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 9vh;
+  min-height: 0.8cm;
+  color: #fff;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+
+.registBtn{
+
+    background: #0C8145;
+}
+.signUpBtn{
+
+    background: #0151FF;
+}
+.login {
+  width: 100%;
+  min-height: 100vh;
+  background: #DADEC2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .loginContainer {
+  padding:7%;
+  width: 80%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:white;
+  min-height: 10cm;
+  min-width: 8cm;
+  height: 70vh;
+  border-radius: 3%;
+}
+
+.login .loginContainer label {
+  margin: 2vh 0;
+  font-weight: 550;
+  font-size: 3.5vh;
+  line-height: 1;
+
+}
+
+.login .loginContainer input {
+  width: 96%;
+  outline: none;
+  font-size: 3vh;
+  padding: 1.7vh 2%;
+  box-sizing: content-box;
+  background: rgba(255, 255, 255, 0.1);
+  letter-spacing: 1px;
+  border: 1.5px solid #383A34;
+  border-radius: 10px;
+  height: 15vh;
+  min-height: 0.8cm;
+  max-height: 1cm;
+}
+
+.login .loginContainer .btnContainer {
+  margin-top: 4vh;
+
+}
+
+.login .loginContainer .btnContainer p {
+  margin: 2.5vh 0 0 0;
+  text-align: right;
+  margin: 0;
+}
+
+.login .loginContainer .btnContainer p span {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-left: 2%;
+  cursor: pointer;
+}
+
+.logWithAcount{
+  color: blue;
+}
+.login .loginContainer .btnContainer p span:hover {
+  color: red;
+}
+
+.login .loginContainer .errorMsg {
+  color: red;
+  font-size: 16px;
+}
+.regist{
+  color:#0C8145;
+}
+
+.resetPassword{
+  color: blue;
+  display: flex;
+  justify-content: center;
+}
