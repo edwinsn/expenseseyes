@@ -34,5 +34,13 @@ src/setupTests.js
 #enviroment file
 backend/.env
 frontend/.env
+frontend/build
+frontend/firebase.json
+frontend/firebaserc
 frontend/.eslintcache
 frontend/src/firebase-config.js
+backend/.firebaserc
+backend/.firebase.json
+backend/functions/package-lock.json
+backend/package-lock.json
+frontend/.firebaserc
