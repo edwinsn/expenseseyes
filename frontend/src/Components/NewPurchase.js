@@ -15,10 +15,11 @@ export class NewPurchase extends Component{
             cathegoryMenuIsOpen:false,
             sendButton:<input type="submit" className="send" value="send"></input>,
             options:[
-                {value:"rent",label:"rent"},
-                {value:"food",label:"food"},
-                {value:"public services",label:"public services"}],
-                cathegorySelected:{value:"noCathegory",label:"cathegory"}
+                {value:"internet",label:"internet"},
+                {value:"alquiler",label:"alquiler"},
+                {value:"comida",label:"comida"},
+                {value:"servicios publicos",label:"Servicios publicos"}],
+                cathegorySelected:{value:"noCathegory",label:"categoria"}
         }
     }
 
@@ -29,9 +30,9 @@ export class NewPurchase extends Component{
                 <div className="newPurchaseTitle">Registra tus compras</div>
                 <form className="newPurchaseForm"onSubmit={this.sendPurchase}>
                     <div className="fields">
-                        <input className="newPrice" placeholder="$price" type="number" required></input>
+                        <input className="newPrice" placeholder="$precio" type="number" required></input>
                         <div className="options">
-                            <input className="newName" placeholder="name" type="text"></input>
+                            <input className="newName" placeholder="nombre" type="text"></input>
                             <input className="newDate" type="date" placeholder="mm/dd/yyyy"></input>
                             <Select onKeyDown={this.addCathegory} 
                             value={this.state.cathegorySelected}
@@ -63,9 +64,10 @@ export class NewPurchase extends Component{
         let cathegory=this.state.cathegorySelected.value
         cathegory=cathegory!=="noCathegory"?cathegory:"various"
 
-        let date=ev.target[2].value
-        date=date?date:new Date()
-
+        let date=new Date(ev.target[2].value)
+        if(!date.getDate()){
+            date=new Date()
+        }
         const newPurchase={
             userId:this.props.userId,
             price:ev.target[0].value,
@@ -79,6 +81,10 @@ export class NewPurchase extends Component{
         if(status===200){
             console.log("Data saved")
             await this.props.update()
+        
+            for(let i=0;i<3;i++){
+                ev.target[i].value=""
+            }
         }
         else{console.log("Error: "+ status)}
         this.setState({sendButton:<input type="submit" className="send" value="send"></input>})

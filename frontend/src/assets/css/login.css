@@ -104,3 +104,36 @@ button {
   display: flex;
   justify-content: center;
 }
+
+.togglePassword{
+  display: none;
+}
+
+.togglePassword+label{
+  width: 7vh;
+  min-width: 1cm;
+  max-height: 0.6cm;
+  max-width: 1cm;
+	height: 4vh;
+  min-height: 0.6cm;
+  background-size: cover;
+  background-image: url("../images/closedEye.svg");
+}
+
+.togglePassword:checked + label{
+  background-image: url("../images/openedEye.svg");
+}
+
+.hidePasswordImage{
+  position: absolute;
+  right:1%;
+  top:13%;
+  cursor: pointer;
+}
+
+.passwordContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}

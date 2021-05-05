@@ -1,0 +1,38 @@
+.intervalOfChart{
+    position: absolute;
+    background-color: white;
+    z-index: 3;
+    border-radius:2px;
+    box-shadow:2px 2px #E0E0E0;
+    right: 10%;
+
+}
+
+.intervalOfChart > li{
+    display: none;
+    z-index: 3;
+    border-bottom:1px solid #E0E0E0 ;
+}
+
+.optionsContainer > div:hover >.intervalOfChart >li{
+    display: block;
+    padding: 6px 4px;
+}
+
+
+.optionsContainer > select{
+    background-color:#E3E6C7;
+    border: 0;
+}
+
+.optionsContainer{
+    float: right;
+    display: flex;
+    position: relative;
+
+}
+
+.optionsContainer div img{
+   height: 2.4vh;
+   min-height: 0.4cm;
+}

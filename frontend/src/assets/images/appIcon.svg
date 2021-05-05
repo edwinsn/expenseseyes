@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="450" width="650" viewbox="0 0 650 850" >
+  
+  <symbol id="pila1"  >    
+    <path d="M 0 55 L 85 85 V 185 L 0 155  L 0 55" fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 85 85  L 230 30  L 230 130  L 85 185 " fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 0 55 L 155 0 L 229 30 L 85 85 L 0 55 " fill="rgb(126, 151, 110)" stroke="rgb(39, 65, 22)" stroke-width="1" />
+    
+    
+    <path d="M 13 55 L 155 5 L 217 30 L 85 80 L 14 55" fill="transparent" stroke="rgb(61, 102, 39)" stroke-width="2" />
+    
+    <path d=" M 0 65  L 85 95  M 0 75  L 85 105  M 0 85  L 85 115  M 0 95  L 85 125  M 0 105  L 85 135  M 0 115  L 85 145  M 0 125  L 85 155  M 0 135  L 85 165  M 0 145  L 85 175" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" />
+    
+    <path d="M 85 95  L 229 40  M 85 105  L 229 50  M 85 115  L 229 60  M 85 125 L 229 70  M 85 135  L 229 80  M 85 145  L 229 90  M 85 155  L 229 100  M 85 165  L 229 110  M 85 175  L 229 120" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" /> />
+    
+    <path d="M 59 33 L 135 63  L 170 50  L 95 20 " fill="rgb(229, 229, 213)" stroke="rgb(229, 229, 213)" stroke-width="0.1" />
+    
+    <path d="M 135 63 V 166 L 170 153 L 170 50" fill="rgb(200, 199, 177)" stroke="red" stroke-width="0.1" />
+    
+  </symbol>
+  
+  
+  <symbol id="pila2"  >    
+    <path d="M 0 55 L 85 85 V 265 L 0 235  L 0 55" fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 85 85  L 230 30  L 230 210  L 85 265 " fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 0 55 L 155 0 L 229 30 L 85 85 L 0 55 " fill="rgb(126, 151, 110)" stroke="rgb(39, 65, 22)" stroke-width="1" />
+    
+    
+    <path d="M 13 55 L 155 5 L 217 30 L 85 80 L 14 55" fill="transparent" stroke="rgb(61, 102, 39)" stroke-width="2" />
+    
+    <path d=" M 0 65  L 85 95  M 0 75  L 85 105  M 0 85  L 85 115  M 0 95  L 85 125  M 0 105  L 85 135  M 0 115  L 85 145  M 0 125  L 85 155  M 0 135  L 85 165  M 0 145  L 85 175  M 0 155  L 85 185  M 0 165  L 85 195  M 0 175  L 85 205  M 0 185  L 85 215  M 0 195  L 85 225  M 0 205  L 85 235  M 0 215  L 85 245  M 0 225  L 85 255" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" />
+    
+    <path d="M 85 95  L 229 40  M 85 105  L 229 50  M 85 115  L 229 60  M 85 125 L 229 70  M 85 135  L 229 80  M 85 145  L 229 90  M 85 155  L 229 100  M 85 165  L 229 110  M 85 175  L 229 120   M 85 185  L 229 130   M 85 195  L 229 140   M 85 205  L 229 150   M 85 215  L 229 160  M 85 225  L 229 170  M 85 235  L 229 180  M 85 245  L 229 190  M 85 255  L 229 200" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" /> />
+    
+    <path d="M 59 33 L 135 63  L 170 50  L 95 20 " fill="rgb(229, 229, 213)" stroke="rgb(229, 229, 213)" stroke-width="0.1" />
+    
+    <path d="M 135 63 V 246 L 170 233 L 170 50" fill="rgb(200, 199, 177)" stroke="red" stroke-width="0.1" />
+    
+  </symbol>
+  
+  <symbol id="pila3"  >    
+    <path d="M 0 55 L 85 85 V 345 L 0 315  L 0 55" fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 85 85  L 230 30  L 230 290  L 85 345 " fill="rgb(61, 102, 39)" stroke="rgb(200, 199, 177)" stroke-width="0.9" />
+    
+    <path d="M 0 55 L 155 0 L 229 30 L 85 85 L 0 55 " fill="rgb(126, 151, 110)" stroke="rgb(39, 65, 22)" stroke-width="1" />
+    
+    
+    <path d="M 13 55 L 155 5 L 217 30 L 85 80 L 14 55" fill="transparent" stroke="rgb(61, 102, 39)" stroke-width="2" />
+    
+    <path d=" M 0 65  L 85 95  M 0 75  L 85 105  M 0 85  L 85 115  M 0 95  L 85 125  M 0 105  L 85 135  M 0 115  L 85 145  M 0 125  L 85 155  M 0 135  L 85 165  M 0 145  L 85 175  M 0 155  L 85 185  M 0 165  L 85 195  M 0 175  L 85 205  M 0 185  L 85 215  M 0 195  L 85 225  M 0 205  L 85 235  M 0 215  L 85 245  M 0 225  L 85 255  M 0 235  L 85 265  M 0 245  L 85 275  M 0 255  L 85 285  M 0 265  L 85 295  M 0 275  L 85 305  M 0 285  L 85 315  M 0 295  L 85 325  M 0 305  L 85 335" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" />
+    
+    <path d="M 85 95  L 229 40  M 85 105  L 229 50  M 85 115  L 229 60  M 85 125 L 229 70  M 85 135  L 229 80  M 85 145  L 229 90  M 85 155  L 229 100  M 85 165  L 229 110  M 85 175  L 229 120   M 85 185  L 229 130   M 85 195  L 229 140   M 85 205  L 229 150   M 85 215  L 229 160  M 85 225  L 229 170  M 85 235  L 229 180  M 85 245  L 229 190  M 85 255  L 229 200  M 85 265  L 229 210  M 85 275  L 229 220  M 85 285  L 229 230  M 85 295  L 229 240  M 85 305  L 229 250  M 85 315  L 229 260  M 85 325  L 229 270  M 85 335  L 229 280" fill="rgb(204, 224, 209)" stroke="rgb(39, 65, 22)" stroke-width="2" /> />
+    
+    <path d="M 59 33 L 135 63  L 170 50  L 95 20 " fill="rgb(229, 229, 213)" stroke="rgb(229, 229, 213)" stroke-width="0.1" />
+    
+    <path d="M 135 63 V 326 L 170 313 L 170 50" fill="rgb(200, 199, 177)" stroke="red" stroke-width="0.1" />
+    
+  </symbol>
+
+
+  <use x="84" y="28" xlink:href="#pila3" />
+  <use x="185" y="140" xlink:href="#pila2" />
+  <use class="a" x="285" y="251" xlink:href="#pila1" />
+  
+</svg>

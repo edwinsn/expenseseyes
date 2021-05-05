@@ -5,6 +5,7 @@ import { LoadingCircles } from "./Loading";
 const Login =(props)=>{
 
     let [showResetPasswordMessage, toggleShowResetPasswordMessage]=useState(false)
+    let [hidepassword, toggleHidePassword] = useState(true)
 
     const {email, 
            password,
@@ -23,16 +24,18 @@ const Login =(props)=>{
             <div className="loginContainer">
                 {(showResetPasswordMessage)&&<p>Revisa tu correo electrónico para restablecer la contraseña</p>}
                 <label>Email</label>
-                <input type="text" 
+                <input type="email"
                        autoFocus   
                        required 
                        value={email} 
                        onChange={e=>{
                            parenState({email:e.target.value})
                        }} />
+                       
                 <p className="errorMsg">{emailError}</p>
                 <label>Contraseña</label>
-                <input type="text"
+                <div className="passwordContainer">
+                <input type={hidepassword?"password":"text"}
                        required
                        value={password}
                        onChange={e=>{
@@ -45,6 +48,9 @@ const Login =(props)=>{
                          }
                        }
                 />
+                <input type="checkbox" id="hidepassword" className="togglePassword"  onChange={()=>{toggleHidePassword(!hidepassword)}}></input>
+                <label for="hidepassword" htmlFor="hidepassword" className="hidePasswordImage"/>
+                </div>
                 <p className="errorMsg">{passwordError}</p>
                 <div className="btnContainer">
                     

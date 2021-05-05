@@ -1,17 +1,14 @@
-import axios from 'axios'
 import { Component } from 'react'
-import {LoadingCircles} from './Loading'
+import {Purchase} from './Purchase'
 import '../assets/css/purchaseList.css'
-//evitar renderizar para remover el icono de carga
+import canlendarIcon from '../assets/images/Calendar.svg'
 
 export class PurchaseList extends Component{
 
     constructor(props){
         super(props)
-        this.deletePurchase=this.deletePurchase.bind(this)
-        this.state={loading:<LoadingCircles/>}
+        this.state={order:false}
     }
-
 
     render(){
     console.log("Purchase list rendered")
@@ -21,19 +18,25 @@ export class PurchaseList extends Component{
     if(this.props.purchases[0]){
 
     let listOfPurchases = []
-    this.props.purchases.forEach(
+    let purchases=this.props.purchases
+
+    if(this.state.order==="byPrice"){
+        purchases=purchases.sort((a,b)=>{return a.price-b.price})
+    }
+    else if(this.state.order==="byDate"){
+        purchases=purchases.sort((a,b)=>{return new Date(a.date)-new Date(b.date)})
+    }
+    
+       purchases.forEach(
         (e)=>{
             let date = new Date(e.date)
-            listOfPurchases.unshift(<div key={e._id} className="purchase">
-                <span className="purchasePrice">${e.price}</span>
-                <span className="purchaseName">{e.name}</span>
-                <span className="purchaseCathegory">{e.cathegory}</span>
-                <span className="purchaseDate">{`${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`}</span>
-                <span className="deletePurchase" onClick={()=>{this.deletePurchase(e._id);}}>X</span>
-            </div>)
-        })
-
- 
+            listOfPurchases.unshift(<Purchase
+                price={e.price} 
+                name={e.name} 
+                cathegory={e.cathegory} 
+                date={date} _id={e._id} 
+                update={this.props.update}/>)
+        }) 
 
     list=(<>
                 {listOfPurchases}
@@ -46,18 +49,19 @@ export class PurchaseList extends Component{
         <div className="purchaseList" >
             <div className="listTitle">
                 <span className="purchasesTitle">Compras</span>
-                    {this.props.loading.deleting&&this.state.loading}
+                <div className="container">
+                    <span>ordenar por:</span>
+                    <button className="orderPurchases"
+                            onClick={()=>{this.setState({order:"byPrice"})}}
+                    >$</button>
+                    <button className="orderPurchases"
+                            onClick={()=>{this.setState({order:"byDate"})}}
+                            alt="ordenar por Fecha"
+                    ><img className="calendarIcon" alt="ordernar por fecha" src={canlendarIcon}/></button>
+                </div>
             </div>
             {list}
         </div>
     )
-    }
-
-    async deletePurchase(id){
-        this.props.loading.deleting=true
-        this.setState({reload:true})
-        await axios.delete(process.env.REACT_APP_PURCHASES_URI+id)
-        this.props.update()
-        
     }
 }

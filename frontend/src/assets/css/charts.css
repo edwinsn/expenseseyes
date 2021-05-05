@@ -16,10 +16,6 @@
     min-height: 5cm;
 }
 
-.graphBy{
-    position: relative;
-    float: right;
-}
 
 .noData{
     display: flex;

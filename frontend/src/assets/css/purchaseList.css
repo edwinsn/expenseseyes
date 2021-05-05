@@ -2,17 +2,52 @@
     color: red;
     margin-right:2%;
     cursor: pointer;
+    height: 90%;
+    min-width:0.6cm;
+    display: flex;
+    text-align: right;
 }
+
 .listTitle{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 100%;
     height: 13%;
+}
+.listTitle .container{
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.listTitle > .container > span{
+    white-space: nowrap;
+}
+
+.listTitle > .container > button > img {
+    height: 60%;
+}
+
+.listTitle > .container > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+    min-width: 1.1cm;
 }
 
 .newPurchaseTitle{
     font-weight: 1000;
+}
+
+.orderPurchases{
+    border-radius: 10px;
+    color: black;
+    height: 100%;
+    width: 20%;
+    z-index: 1;
 }
 
 .purchaseList{
@@ -82,7 +117,7 @@
     font-size: small;
 }
 .purchasesTitle{
-    margin-left: 13%;
+    margin-left: 2%;
     font-weight: bolder;
     font-size: large;
 }

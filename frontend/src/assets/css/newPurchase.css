@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    min-height:1.5cm;
+    min-height:3cm;
 }
 
 .fields >*{
@@ -45,7 +45,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     width: 60%;
     height:80%;
     padding: 0;

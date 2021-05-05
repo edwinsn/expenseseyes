@@ -13,11 +13,17 @@ header {
     align-items: center;
     justify-content: space-between;
     z-index: 2;
+
   }
+
+.header > img {
+  height: 80%;
+}
 
 .logOutBtn{
     height: 100%;
     fill:white;
+    cursor: pointer;
 }
 
   
@@ -26,6 +32,10 @@ header .container{
   display: flex;
   margin-right:1%;
   height: 100%;
+}
+
+.email{
+  color: white;
 }
 
 

@@ -29,6 +29,7 @@
   border-collapse: collapse;
   box-sizing: border-box;
   font-weight: 1000;
+  white-space: nowrap;
 }
 .barchart{
   height: 100%;

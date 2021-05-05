@@ -49,6 +49,7 @@ class App extends Component {
               break;
             case "auth/user-disable":
               this.setState({emailError:"Usuario Desabilitad0"})
+              break;
             case "auth/user-not-found":
               this.setState({emailError:"Usuario no registrado"})
               break
@@ -154,7 +155,8 @@ class App extends Component {
       }
     
       return (
-        <div className="App">{
+        <div className="App">
+        {
           view
         }
         </div>
