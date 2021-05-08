@@ -34,7 +34,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: blue;
     min-width: 1.1cm;
 }
 
@@ -53,6 +52,7 @@
 .purchaseList{
     width: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
     background-color: white;
     text-align: center;
     border-radius: 20px;

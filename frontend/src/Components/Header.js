@@ -7,7 +7,9 @@ const Header=({handleLogout, email})=>{
     return (
 
         <header className="header">
+           <a href="#mainPage" className="appIconContainer">
             <img src={appIcon} alt="app Icon" className="appIcon"/>
+           </a>
             <span className="container">
                 <p className="email">{email}</p>
                     <img src={logOutIcon} className="logOutBtn" onClick={handleLogout} alt="Salir"/>

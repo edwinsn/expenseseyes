@@ -5,7 +5,7 @@ import {LoadingRectangles} from './Loading'
 import axios from 'axios'
 import { Component } from "react"
 import Header from './Header.js'
-
+import '../assets/css/mainpage.css'
 
 class MainPage extends Component{
 
@@ -28,9 +28,9 @@ class MainPage extends Component{
         console.log("Main Page Rendered")
 
         return (
-            <div className="MainPage">
+            <div className="MainPage" id="mainPage">
            <Header handleLogout={this.props.handleLogout} email={this.props.email}/>
-            <div className="purchasesInfo">
+            <div className="purchasesInfo" >
                 <NewPurchase update={this.getPurchases} userId={this.props.userId} className="newPurchase"/>
                 {this.state.PurchaseList}     
             </div>

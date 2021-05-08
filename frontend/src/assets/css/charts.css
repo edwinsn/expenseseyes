@@ -6,16 +6,21 @@
     align-items: center;
     height: 100%;
     box-sizing: border-box;
+    align-content: space-between;
+    row-gap:3vh;
+    position: relative;
 }
 .charts>*{
     flex-basis: 40%;
     flex-grow: 0.7;
     height: 46%;
-    margin: 1%;
+    padding: 1%;
+    box-sizing: content-box;
     min-width: 6.5cm;
     min-height: 5cm;
-}
+    max-width: 30cm;
 
+}
 
 .noData{
     display: flex;

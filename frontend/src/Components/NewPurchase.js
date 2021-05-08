@@ -27,7 +27,7 @@ export class NewPurchase extends Component{
         console.log("Rendered new Purchase")
         return (
             <div className="newPurchase">
-                <div className="newPurchaseTitle">Registra tus compras</div>
+                <div id="newPurchase" className="newPurchaseTitle">Registra tus compras</div>
                 <form className="newPurchaseForm"onSubmit={this.sendPurchase}>
                     <div className="fields">
                         <input className="newPrice" placeholder="$precio" type="number" required></input>

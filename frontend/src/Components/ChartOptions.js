@@ -1,12 +1,13 @@
 import '../assets/css/chartoptions.css'
+import enlageIcon from '../assets/images/Enlarge.svg'
 import calendarIcon from '../assets/images/Calendar.svg'
 
 export let ChartOptions=(props)=>{
 
-   console.log(props.lastInitialDate)
+
     return(
          <div className="optionsContainer">
-            <div><img src={calendarIcon} alt="Limite temporal"/>
+            <div><img className="optionsImages" src={calendarIcon} alt="Limite temporal"/>
                 <ul className="intervalOfChart">
                 <li>Feccha inicial:
                     <input type="date" value={props.resetDates?"":undefined}  onChange={(ev)=>{
@@ -20,7 +21,7 @@ export let ChartOptions=(props)=>{
                 </ul>
             </div>
             <select className="graphBy"
-                    onClick={(ev)=>{
+                    onChange={(ev)=>{
                         if(ev.target.value==="Cantidad"){
                              props.graphByDate()
                         }
@@ -32,6 +33,13 @@ export let ChartOptions=(props)=>{
                 <option >Precios</option>
                 <option >Cantidad</option>
             </select>
+            
+            {!props.fullScreen&&
+            <a href={"#"+props.ComponentId} className="chartContainer">
+                <img src={enlageIcon} className="optionsImages" alt="expand chart" onClick={props.enlargeChart}/>
+            </a>
+            }
+            {props.fullScreen&&<span onClick={props.reduceChart} className="closeChart">X</span>}
         </div>
     )
 }

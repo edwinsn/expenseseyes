@@ -1,3 +1,13 @@
+.chartContainer{
+    height: 100%;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.expandIcon{
+    height: 4vh;
+}
+
 .intervalOfChart{
     position: absolute;
     background-color: white;
@@ -5,7 +15,6 @@
     border-radius:2px;
     box-shadow:2px 2px #E0E0E0;
     right: 10%;
-
 }
 
 .intervalOfChart > li{
@@ -29,10 +38,19 @@
     float: right;
     display: flex;
     position: relative;
-
+    height: 2.4vh;
+    min-height: 0.4cm;
 }
 
-.optionsContainer div img{
-   height: 2.4vh;
-   min-height: 0.4cm;
+.optionsImages {
+    height: 2.5vh;
+}
+
+
+.closeChart{
+    color: red;
+    cursor: pointer;
+    font-weight: 1000;
+    font-size: 3vh;
+    padding-left: 4vh;
 }

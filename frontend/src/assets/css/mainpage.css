@@ -1,0 +1,52 @@
+.MainPage{
+    display: flex;
+    flex-wrap: wrap;
+    height: 92.5vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: flex-end;
+    align-content: space-between;
+    position: absolute;
+    bottom: 0;
+    gap:10px;
+}
+
+.chartsPart{
+    align-items: center;
+    display: flex;
+    flex-basis: 58%;
+    flex-grow: 1;
+    min-width:7cm;
+    max-width: 20cm;
+    justify-content: center;
+    height: 90vh;
+    overflow:scroll;
+}
+
+.newPurchase{
+    height: 40%;
+    min-height: 4.5cm;
+}
+.purchaseList{
+    height: 56.2%;
+    margin-top: 2%;
+    min-height: 4.5cm;
+
+}
+
+.purchasesInfo{
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 38%;
+    margin: 0 1%;
+    flex-grow: 0.9;
+    height: 90vh;
+    min-width: 5.6cm;
+    max-width: 35cm;
+}
+.title{
+    color:rgb(0, 81, 255);
+    font-weight: bold;
+}

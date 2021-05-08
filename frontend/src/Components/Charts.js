@@ -95,7 +95,7 @@ class PurchaseDistributionByCathegory extends Component{
 
   console.log("Chart2 rendered")
 
-  return <ChartWithOptions title="Compras por Categorias" generateBarChartData={this.generateBarChartData} order={true} renderId={this.props.renderId}/>
+  return <ChartWithOptions title="Compras por Categoria" generateBarChartData={this.generateBarChartData} order={true} renderId={this.props.renderId}/>
   
   }
 }

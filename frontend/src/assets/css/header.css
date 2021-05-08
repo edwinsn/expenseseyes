@@ -1,5 +1,12 @@
 .appIcon{
-  margin-left: 1%;
+  margin-left: 15%;
+  height: 80%;
+}
+
+.appIconContainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 header {
@@ -16,9 +23,7 @@ header {
 
   }
 
-.header > img {
-  height: 80%;
-}
+
 
 .logOutBtn{
     height: 100%;

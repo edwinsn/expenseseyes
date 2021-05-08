@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import noDataIcon from '../assets/images/noData.svg'
-import '../assets/css/bar.css'
+import '../assets/css/barchart.css'
 
 
 class Bar extends Component{
@@ -60,7 +60,7 @@ render(){
     barStyles.forEach((style,index)=>{
 
         let noHeight = style.height.slice(0,-1)==="0"
-        let horizontalLineWidth = noHeight?0:(index+1)*102
+        let horizontalLineWidth = noHeight?0:(index+1)*102+10
         let horizontalLineHeight =  noHeight?0:"0.2vh"
 
         bars.push(
@@ -69,7 +69,8 @@ render(){
                     <div className="horizontalLines"
                         style={{width:horizontalLineWidth+"%",height:horizontalLineHeight}}>
                     </div>
-                    <div className="label" >
+                    <p className="price">{orderedData[index].height}</p>
+                    <div className="label">
                         {noHeight?"":orderedData[index].label}
                     </div>
             </div>);
