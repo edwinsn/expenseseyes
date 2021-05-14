@@ -75,7 +75,7 @@ export class NewPurchase extends Component{
             name:ev.target[1].value,
             date
         }
-
+try{
         const {status}=await axios.post(process.env.REACT_APP_PURCHASES_URI, newPurchase)
         
         if(status===200){
@@ -89,6 +89,10 @@ export class NewPurchase extends Component{
         else{console.log("Error: "+ status)}
         this.setState({sendButton:<input type="submit" className="send" value="send"></input>})
     }
+    catch(err){
+        console.log(err)
+    }
+}
 
 
     selectCathegory(ev){

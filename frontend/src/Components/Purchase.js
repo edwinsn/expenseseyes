@@ -56,8 +56,11 @@ export function Purchase(props) {
                 className="purchaseDate" 
                 type="text" 
                 onFocus={(ev)=>{ev.target.type="date"}} 
-                onBlur={(ev)=>{ev.target.type="text"}}
-                defaultValue = {date.toISOString().split('T')[0].split("-").join("/")}
+                onBlur={(ev)=>{
+                    ev.target.type="text"
+                    ev.target.value=date.toISOString().split('T')[0].split("-").reverse().join("/")
+            }}
+                defaultValue = {date.toISOString().split('T')[0].split("-").reverse().join("/")}
                 /> 
 
                 {(loading)&&<div className="loadingPurchaseuUpdate"><LoadingCircles /></div>}
@@ -99,8 +102,9 @@ let updatedPurchase=async function(inputs,id){
         name,
         date
         }
-        console.log(newPurchase.id)
+        try{
         const {data}=await axios.put(process.env.REACT_APP_PURCHASES_URI, newPurchase)
         console.log(data)
+        }catch(err){}
 
 }
