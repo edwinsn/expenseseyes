@@ -70,7 +70,7 @@ render(){
                         style={{width:horizontalLineWidth+"%",height:horizontalLineHeight}}>
                     </div>
                     <p className="price">{orderedData[index].height}</p>
-                    <div className="label">
+                    <div className="label" style={{fontSize:this.props.fontSize}}>
                         {noHeight?"":orderedData[index].label}
                     </div>
             </div>);

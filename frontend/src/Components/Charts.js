@@ -49,7 +49,7 @@ class PurchaseDistributionByPrice extends Component{
 
   render(){
 
-    console.log("Chart1 rendered")
+    //console.log("Chart1 rendered")
 
     return <ChartWithOptions title="Compras por Precios" generateBarChartData={this.generateBarChartData} renderId={this.props.renderId}/>
 
@@ -75,7 +75,7 @@ class PurchaseDistributionByCathegory extends Component{
       purchases=purchases.filter((e)=>{return new Date(e.date)-finalDate<=0})
     }
 
-   let groupedData = groupBy(purchases,["cathegory"])
+   let groupedData = groupBy(purchases,["category"])
     
     let dataByCounts = []
     let dataByPrice=[]
@@ -93,7 +93,7 @@ class PurchaseDistributionByCathegory extends Component{
 
   render(){
 
-  console.log("Chart2 rendered")
+  //console.log("Chart2 rendered")
 
   return <ChartWithOptions title="Compras por Categoria" generateBarChartData={this.generateBarChartData} order={true} renderId={this.props.renderId}/>
   
@@ -121,18 +121,19 @@ class PurchaseDistributionByDates extends Component{
       purchases=purchases.filter((e)=>{return new Date(e.date)-finalDate<=0})
     }
 
-    let numberOfIntervals = 3
+    let numberOfIntervals = 0
     let dates = purchases.map((e)=>{
       try{
-        return parseInt(e.date.slice(2,4)+ e.date.slice(5,7)+e.date.slice(8,10))
+        return e.date
       }
       catch(err){
         return undefined
       }
     })
-    let pricesBysDates= this.props.purchases.map((e)=>{return e.price})
+    let prices = this.props.purchases.map((e)=>{return e.price})
 
-    let {frecuences,labels, totals}=hist(dates, numberOfIntervals, true, pricesBysDates)
+    let {frecuences,labels, totals}=hist(dates, numberOfIntervals, true, prices)
+
     if(frecuences){
       let dataByCounts=frecuences.map((e,i)=>{return {label:labels[i], height:e}})
       let dataByPrice=totals.map((e,i)=>{return {label:labels[i], height:e}})
@@ -144,7 +145,7 @@ class PurchaseDistributionByDates extends Component{
   }
 
   render(){
-  console.log("Chart3 rendered!")
+  //console.log("Chart3 rendered!")
 
   return <ChartWithOptions title="Compras por fecha" generateBarChartData={this.generateBarChartData} order={true} renderId={this.props.renderId}/>
   }

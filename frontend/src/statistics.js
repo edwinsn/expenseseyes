@@ -1,18 +1,22 @@
 // the user will have an slide for intervals
 
-export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydates=[]){
+export const hist = function(data,numbreOfIntervals=0, dates=false, prices=[]){
 
     if(!data[0])return {labels:undefined, frecuences:undefined, totals:undefined};
     //console.log(data)
-    data = data.filter(element=>!isNaN(element));
+
 
     if( !numbreOfIntervals ){
-        if(unique(data).length<12)numbreOfIntervals=3
-        else if(unique(data).length < 100)numbreOfIntervals = Math.floor(4+data.length/20);
-        else numbreOfIntervals = 7;
+        let n = unique(data).length
+        if(n<10)numbreOfIntervals=3
+        else if(n < 100)numbreOfIntervals = Math.floor(4+data.length/20);
+        else numbreOfIntervals = 8;
     }
 
-    //console.log("numberOfIntervals: "+numbreOfIntervals)
+    numbreOfIntervals = numbreOfIntervals>unique(data).length?unique(data).length:numbreOfIntervals
+
+    if(dates)data=data.map(d=>new Date(d))
+
     let max = Math.max(...data);
     let min = Math.min(...data);
 
@@ -20,14 +24,12 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydate
     let frecuences = [];
     let totals = [];
 
-    numbreOfIntervals = numbreOfIntervals>unique(data).length?unique(data).length:numbreOfIntervals
 
     for(let i=0;i<=numbreOfIntervals;i++) {
         intervals.push((min+(max-min)*i/numbreOfIntervals))
         frecuences.push(0)
         totals.push(0)
     }
-
 
     //posibles  datos negativos
 
@@ -53,14 +55,15 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, pricesBydate
 
         for(let i=1;i<intervals.length;i++){
             let aux=  Math.ceil(intervals[i-1])===Math.ceil(intervals[i])?Math.ceil(intervals[i]+1):Math.ceil(intervals[i])
-            labels.push(formatDate( Math.ceil(intervals[i-1])) +" : "+formatDate(aux));
+            labels.push(formatDate( new Date(Math.ceil(intervals[i-1]))) +" : "+formatDate( new Date(aux)));
 
-            totals[i-1] = sum(pricesBydates.slice(acumulatedFrecuences, acumulatedFrecuences+frecuences[i-1]))
+            totals[i-1] = sum(prices.slice(acumulatedFrecuences, acumulatedFrecuences+frecuences[i-1]))
             acumulatedFrecuences+=parseInt(frecuences[i-1])
         }
-    }else{
+    }
+    else{
         for(let i=0;i<intervals.length-1;i++){
-            labels.push(Math.round(intervals[i])+" - "+Math.round(intervals[i+1]))
+            labels.push( Math.round(intervals[i])+" - "+ Math.round(intervals[i+1]))
         }
 
     }
@@ -76,48 +79,11 @@ console.log(hist(data))*/
 
 const formatDate = function(date){
 
-    let formatedDate
-    date=date+""
+    let formatedDate = date.toLocaleString('default', { month: 'short' })+" "+date.getDate()
 
-    switch (date.slice(2,4)) {
-                case "01":
-                    formatedDate="20"+date.slice(0,2)+" Ene"
-                    break;
-                 case "02":
-                    formatedDate="Feb"
-                    break;
-                case "03":
-                    formatedDate="Mar"
-                    break;
-                case "04":
-                    formatedDate="Abr"
-                    break;
-                case "05":
-                    formatedDate="May"
-                    break;
-                case "06":
-                    formatedDate="Jun"
-                    break;
-                case "07":
-                    formatedDate="Jul"
-                    break;
-                case "08":
-                    formatedDate="Ago"
-                    break;
-                case "09":
-                    formatedDate="Sep"
-                    break;
-                case "10":
-                    formatedDate="Oct"
-                    break;
-                case "11":
-                    formatedDate="Nov"
-                    break;
-                default:
-                    formatedDate="Dic"
-                    break;
-            }
-    formatedDate = formatedDate+"-"+date.slice(4,6)
+    if(date.getMonth()===0){
+        formatedDate=date.getFullYear()+"/"+formatedDate
+    }
 
     return formatedDate
 }
@@ -132,8 +98,12 @@ const sum = function(data){
 }*/
 
 const unique = function(data){
-    return data.filter((datum, index, arr) => arr.indexOf(datum) === index)
+
+    return data.filter((datum, index, arr) => {
+        return arr.indexOf(datum) === index})
 }
+
+
 
 const groupby = function(data, variable){
   

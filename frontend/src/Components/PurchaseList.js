@@ -28,14 +28,18 @@ export class PurchaseList extends Component{
     }
     
        purchases.forEach(
-        (e)=>{
+        (e,index)=>{
             let date = new Date(e.date)
             listOfPurchases.unshift(<Purchase
+                key={e._id}
                 price={e.price} 
                 name={e.name} 
-                cathegory={e.cathegory} 
+                category={e.category} 
                 date={date} _id={e._id} 
-                update={this.props.update}/>)
+                deletePurchase={this.props.deletePurchase}
+                update={this.props.update}
+                />)
+
         }) 
 
     list=(<>

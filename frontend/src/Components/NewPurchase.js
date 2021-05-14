@@ -12,14 +12,14 @@ export class NewPurchase extends Component{
         this.selectCathegory=this.selectCathegory.bind(this)
         this.sendPurchase=this.sendPurchase.bind(this)
         this.state={
-            cathegoryMenuIsOpen:false,
+            categoryMenuIsOpen:false,
             sendButton:<input type="submit" className="send" value="send"></input>,
             options:[
                 {value:"internet",label:"internet"},
                 {value:"alquiler",label:"alquiler"},
                 {value:"comida",label:"comida"},
                 {value:"servicios publicos",label:"Servicios publicos"}],
-                cathegorySelected:{value:"noCathegory",label:"categoria"}
+                categorySelected:{value:"noCathegory",label:"categoria"}
         }
     }
 
@@ -35,7 +35,7 @@ export class NewPurchase extends Component{
                             <input className="newName" placeholder="nombre" type="text"></input>
                             <input className="newDate" type="date" placeholder="mm/dd/yyyy"></input>
                             <Select onKeyDown={this.addCathegory} 
-                            value={this.state.cathegorySelected}
+                            value={this.state.categorySelected}
                             onChange={this.selectCathegory}
                             className="newCathegory" 
                             options={this.state.options}
@@ -53,7 +53,7 @@ export class NewPurchase extends Component{
     addCathegory(ev){
         if(ev.keyCode===13){
             let previousValue=ev.target.value
-            this.setState({cathegorySelected:{value: previousValue, label: previousValue}})
+            this.setState({categorySelected:{value: previousValue, label: previousValue}})
             console.log(previousValue)
             ev.target.blur()
         }
@@ -61,8 +61,8 @@ export class NewPurchase extends Component{
     async sendPurchase(ev){
         ev.preventDefault();
         this.setState({sendButton:<LoadingCircles/>})
-        let cathegory=this.state.cathegorySelected.value
-        cathegory=cathegory!=="noCathegory"?cathegory:"various"
+        let category=this.state.categorySelected.value
+        category=category!=="noCathegory"?category:"various"
 
         let date=new Date(ev.target[2].value)
         if(!date.getDate()){
@@ -71,7 +71,7 @@ export class NewPurchase extends Component{
         const newPurchase={
             userId:this.props.userId,
             price:ev.target[0].value,
-            cathegory,
+            category,
             name:ev.target[1].value,
             date
         }
@@ -93,7 +93,7 @@ export class NewPurchase extends Component{
 
     selectCathegory(ev){
         this.setState({
-            cathegorySelected:{value:ev.value, label:ev.value}
+            categorySelected:{value:ev.value, label:ev.value}
         })
     }
 }

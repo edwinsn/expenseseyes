@@ -35,11 +35,11 @@ export let ChartOptions=(props)=>{
             </select>
             
             {!props.fullScreen&&
-            <a href={"#"+props.ComponentId} className="chartContainer">
+            <a href={"#"+props.ComponentId}>
                 <img src={enlageIcon} className="optionsImages" alt="expand chart" onClick={props.enlargeChart}/>
             </a>
             }
-            {props.fullScreen&&<span onClick={props.reduceChart} className="closeChart">X</span>}
+            {props.fullScreen&&<p onClick={props.reduceChart} className="closeChart">X</p>}
         </div>
     )
 }

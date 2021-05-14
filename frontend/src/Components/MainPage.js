@@ -10,13 +10,14 @@ import '../assets/css/mainpage.css'
 class MainPage extends Component{
 
     constructor(props){
-        console.log("Main Page contructed")
         super(props)
         this.state={
         Charts:<LoadingRectangles />, 
         PurchaseList:<LoadingRectangles />    
         }
         this.getPurchases=this.getPurchases.bind(this)
+        this.deletePurchase=this.deletePurchase.bind(this)
+        this.addPurchase=this.addPurchase.bind(this)
     }
 
     componentDidMount(){
@@ -44,15 +45,55 @@ class MainPage extends Component{
     }
 
 
+    deletePurchase(id){
+        let data = this.state.data.filter((e)=>{
+            // eslint-disable-next-line
+            return e._id!=id
+        })
+        this.setState({
+            data,
+             Charts:<Charts purchases={data}/>,
+               PurchaseList:<PurchaseList keY={Math.random()}className="purchaseList" 
+               purchases={data}
+               deletePurchase={this.deletePurchase}
+               update={this.getPurchases}
+               loading={{deleting:false}}/>})
+
+
+    }
+    
+    addPurchase(p){
+        let data=[...this.state.data,p]
+        this.setState({
+            data,
+             Charts:<Charts purchases={data}/>,
+               PurchaseList:<PurchaseList keY={Math.random()}className="purchaseList" 
+               purchases={data}
+               deletePurchase={this.deletePurchase}
+               loading={{deleting:false}}
+               update={this.getPurchases}
+               />})
+    }
+
+
     async getPurchases(){
         console.log("getting data")
 
         try{
             let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:this.props.userId} })
+
+            this.data=data
             if(status===200){
                 this.setState({
+                data,
                 Charts:<Charts purchases={data}/>,
-                PurchaseList:<PurchaseList className="purchaseList" update={this.getPurchases} purchases={data} loading={{deleting:false}}/> })
+                PurchaseList:<PurchaseList className="purchaseList" 
+                purchases={data}
+                deletePurchase={this.deletePurchase}
+                loading={{deleting:false}}
+                update={this.getPurchases}
+                />})
+                
             }
             else{
                 console.log(status)

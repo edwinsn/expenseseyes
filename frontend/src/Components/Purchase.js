@@ -1,36 +1,106 @@
 import axios from 'axios'
 import {LoadingCircles} from './Loading'
 import { useState } from 'react'
-
 export function Purchase(props) {
 
-    let {price, name, cathegory, date, _id, update} = props
+    let {price, name, category, date, _id, update}= props
 
     let [loading, changeLoading] = useState(false)
-
+    let [updating,changeUpdating]=useState(false)
+    //console.log(loading)
+    //console.log(updating)
     return (
-        <div key={Math.random()} className="purchase">
-                <span className="purchasePrice">${price}</span>
-                <span className="purchaseName">{name}</span>
-                <span className="purchaseCathegory">{cathegory}</span>
-                <span  className="purchaseDate">{`${date.getDate()+1}/${date.getMonth()+1}/${date.getFullYear()}`}</span>
-                <span  className="deletePurchase" onClick={async (ev)=>{
+        <form
+        key={props.key}
+        className="purchase"
+        onSubmit={async (ev)=>{
+                ev.preventDefault()
+                changeLoading(true)
+                // eslint-disable-next-line
+                if(price!=ev.target[0].value||
+                // eslint-disable-next-line
+                     name!=ev.target[1].value|| 
+                // eslint-disable-next-line
+                     category!=ev.target[2].value|| 
+                // eslint-disable-next-line
+                     date.toISOString().split('T')[0]!=ev.target[3].value)
+                {
+                changeLoading(true)
+                changeUpdating(false)
+                await updatedPurchase(ev.target,_id)
+                props.update()
+                changeLoading(false)
+                updating=false
+                
+                }
+                else{
+                    console.log("noChanges")
+                }
+                
+            }}
+            onChange={()=>{
+                changeUpdating(true)
+            }}>
+
+                <input 
+                key="1"
+                type="number" className="purchasePrice"  
+                defaultValue={price}
+                />
+                <input
+                key="2"
+                className="purchaseName" type="text" defaultValue={name}/>
+                <input key="3" className="purchaseCategory" type="text" defaultValue={category}/>
+                <input  
+                keY="4"
+                className="purchaseDate" 
+                type="text" 
+                onFocus={(ev)=>{ev.target.type="date"}} 
+                onBlur={(ev)=>{ev.target.type="text"}}
+                defaultValue = {date.toISOString().split('T')[0].split("-").join("/")}
+                /> 
+
+                {(loading)&&<div className="loadingPurchaseuUpdate"><LoadingCircles /></div>}
+                {updating&&<input className="saveBtn" type="submit" value=""/>}
+                {!(loading||updating)&&<span className="deletePurchase" onClick={async (ev)=>{
                     if(!loading){
                         console.log(ev.target)
                         changeLoading(true)
-                        await deletePurchase(_id, update);
+                        await deletePurchaseInDataBase(_id, update);
+                        props.deletePurchase(_id)
                         changeLoading(false)
                     }
-
                     }}>
-                        {!loading&&"X"}
-                        {loading&&<LoadingCircles />}
-                </span>
-        </div>
+                        X
+                </span>}
+                
+        </form>
     )
 }
 
-let deletePurchase = async function (id, update){
+let deletePurchaseInDataBase = async function (id){
         await axios.delete(process.env.REACT_APP_PURCHASES_URI+id)
-        update()
+}
+
+let updatedPurchase=async function(inputs,id){
+    let price=inputs[0].value
+    let name=inputs[1].value
+    let category=inputs[2].value
+    let date=inputs[3].value
+
+   // if(price[0]==="$")price=price.slice(1,price.length)
+
+    console.log(price,name, category,date)
+
+    const newPurchase={
+        id,
+        price,
+        category,
+        name,
+        date
+        }
+        console.log(newPurchase.id)
+        const {data}=await axios.put(process.env.REACT_APP_PURCHASES_URI, newPurchase)
+        console.log(data)
+
 }

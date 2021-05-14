@@ -33,7 +33,7 @@
 }
 
 .bar:hover{
-  border: 2px solid rgb(255, 115, 0);
+  border: 2px solid #ED4400;
 }
 
 .bar:hover > .price{
@@ -83,5 +83,7 @@
 .price{
   display: none;
   position: absolute;
-  background-color: white;
+  background-color: #ED4400;
+  color: white;
+  z-index: 3;
 }

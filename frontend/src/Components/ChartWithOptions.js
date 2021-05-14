@@ -100,7 +100,8 @@ export class ChartWithOptions extends Component{
           transform: " translate(85%,-0%) rotate(90deg)",
           minWidth:"85vh",
           height:"94vw",
-          margin:"0 0 55% 0"
+          margin:"0 0 55% 0",
+          zIndex:5
         }
       }
       else{
@@ -132,7 +133,7 @@ export class ChartWithOptions extends Component{
        enlargeChart={this.enlargeChart}
        ComponentId={this.ComponentId}
        />
-       <BarChart   data={data} orderData={this.props.order} title={this.props.title}/>
+       <BarChart   data={data} orderData={this.props.order} title={this.props.title} fontSize={this.state.fullScreen?"large":undefined}/>
     </div>
     )
   }
