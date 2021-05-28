@@ -120,6 +120,7 @@ class PurchaseDistributionByDates extends Component{
     if(finalDate){
       purchases=purchases.filter((e)=>{return new Date(e.date)-finalDate<=0})
     }
+    purchases=purchases.sort((a,b)=>{return new Date(a.date)-new Date(b.date)})
 
     let numberOfIntervals = 0
     let dates = purchases.map((e)=>{
@@ -130,7 +131,7 @@ class PurchaseDistributionByDates extends Component{
         return undefined
       }
     })
-    let prices = this.props.purchases.map((e)=>{return e.price})
+    let prices = purchases.map((e)=>{return e.price})
 
     let {frecuences,labels, totals}=hist(dates, numberOfIntervals, true, prices)
 
@@ -147,7 +148,7 @@ class PurchaseDistributionByDates extends Component{
   render(){
   //console.log("Chart3 rendered!")
 
-  return <ChartWithOptions title="Compras por fecha" generateBarChartData={this.generateBarChartData} order={true} renderId={this.props.renderId}/>
+  return <ChartWithOptions title="Compras por fecha" generateBarChartData={this.generateBarChartData}  renderId={this.props.renderId}/>
   }
 }
 

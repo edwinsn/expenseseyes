@@ -15,10 +15,17 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, prices=[]){
 
     numbreOfIntervals = numbreOfIntervals>unique(data).length?unique(data).length:numbreOfIntervals
 
-    if(dates)data=data.map(d=>new Date(d))
+    if(dates){
+        data=data.map(d=>new Date(d))
+    }
 
     let max = Math.max(...data);
     let min = Math.min(...data);
+
+    if(dates){
+        max= new Date(max)
+        max=max.setDate(max.getDate()+2)
+    }
 
     let intervals = [];
     let frecuences = [];
@@ -51,13 +58,12 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, prices=[]){
 
     if(dates){
         let acumulatedFrecuences=0
-
-
         for(let i=1;i<intervals.length;i++){
             let aux=  Math.ceil(intervals[i-1])===Math.ceil(intervals[i])?Math.ceil(intervals[i]+1):Math.ceil(intervals[i])
             labels.push(formatDate( new Date(Math.ceil(intervals[i-1]))) +" : "+formatDate( new Date(aux)));
 
             totals[i-1] = sum(prices.slice(acumulatedFrecuences, acumulatedFrecuences+frecuences[i-1]))
+  
             acumulatedFrecuences+=parseInt(frecuences[i-1])
         }
     }
@@ -67,7 +73,6 @@ export const hist = function(data,numbreOfIntervals=0, dates=false, prices=[]){
         }
 
     }
-
     return {labels, frecuences, totals}
     
 }
