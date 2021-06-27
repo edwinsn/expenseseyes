@@ -1,6 +1,38 @@
+@media (max-width: 600px) {
+  .loginHeader {
+    background-color: #E3E6C7;
+  }
+  span {
+    font-size: 1.2em;
+  }
+  .listIcon {
+    width: 70%;
+  }
+
+.loginHeader > a{
+  background-color: #0D894A;
+} 
+}
+
+@media (min-width: 600px) {
+  span {
+    font-size: 1.5em;
+  }
+  .listIcon {
+    width: 23%;
+    min-width: 7cm;
+  }
+  .loginHeader {
+    background-color: transparent;
+  }
+.loginHeader > a{
+  margin-right: 1%;
+  background-color: blue;
+}
+}
+
 button {
   border: none;
-  outline: none;
   width: 100%;
   height: 9vh;
   min-height: 0.8cm;
@@ -11,35 +43,142 @@ button {
   border-radius: 10px;
 }
 
-
-.registBtn{
-
-    background: #0C8145;
+.chartContainer {
+  display: flex;
+  justify-content: center;
 }
-.signUpBtn{
 
-    background: #0151FF;
+.chartContainer>img {
+  height: 80%;
 }
+
+.info {
+  padding-top: 15vh;
+  width: 100%;
+  height: 100vh;
+}
+
+.info>div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  font-size: 1em;
+  padding: 0 12%;
+  /*border: 1px solid blue;*/
+}
+
+.info>div:nth-child(1) {
+  height: 55%;
+  flex-flow: wrap-reverse;
+}
+
+.info>div:nth-child(2) {
+  height: 45%;
+}
+
+.info>div:nth-child(2)>img {
+  height: 80%;
+}
+
+.info>div>span {
+  min-width: 7cm;
+}
+
+.info>div>div {
+  display: flex;
+  align-items: center;
+  /*border: 1px solid red;*/
+}
+
+.info>div>div>span {
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.introPage {
+  width: 100%;
+}
+
+.listIcon {
+  min-height: 70%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 13px 13px 13px 6px #67686336;
+  position: relative;
+}
+
+.listIcon>div {
+  margin-bottom: 5%;
+  height: 13%;
+  width: 80%;
+  background: linear-gradient(to right, #0D894A 20%, #E3E6C7 20% 100%);
+}
+
+.listIcon>span {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  color: #676863;
+}
+
+.loginHeader {
+  padding: 5px;
+  height: 8vh;
+}
+
+.login:active {
+  border: 2px solid yellow;
+}
+
+.loginHeader>a {
+  font-weight: bolder;
+  padding: 13px 40px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+.loginHeader>div {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.6em;
+  color: #0C8145;
+  font-weight: 900;
+}
+
+.loginHeader>div>img {
+  height: 100%;
+}
+
+.login:target>.loginContainer {
+  border: 2px solid #676863;
+}
+
 .login {
   width: 100%;
-  min-height: 100vh;
-  background: #DADEC2;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .login .loginContainer {
-  padding:7%;
+  padding: 7%;
   width: 80%;
   max-width: 520px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background:white;
+  background: white;
   min-height: 10cm;
   min-width: 8cm;
   height: 70vh;
+  box-shadow: 15px 15px 15px 7px #67686336;
   border-radius: 3%;
 }
 
@@ -48,7 +187,6 @@ button {
   font-weight: 550;
   font-size: 3.5vh;
   line-height: 1;
-
 }
 
 .login .loginContainer input {
@@ -68,7 +206,6 @@ button {
 
 .login .loginContainer .btnContainer {
   margin-top: 4vh;
-
 }
 
 .login .loginContainer .btnContainer p {
@@ -84,9 +221,10 @@ button {
   cursor: pointer;
 }
 
-.logWithAcount{
+.logWithAcount {
   color: blue;
 }
+
 .login .loginContainer .btnContainer p span:hover {
   color: red;
 }
@@ -95,43 +233,52 @@ button {
   color: red;
   font-size: 16px;
 }
-.regist{
-  color:#0C8145;
+
+.registBtn {
+  background: #0C8145;
 }
 
-.resetPassword{
+.signUpBtn {
+  background: #0151FF;
+}
+
+.regist {
+  color: #0C8145;
+}
+
+.resetPassword {
   color: blue;
   display: flex;
   justify-content: center;
 }
 
-.togglePassword{
+.togglePassword {
   display: none;
 }
 
-.togglePassword+label{
+.togglePassword+label {
   width: 7vh;
   min-width: 1cm;
   max-height: 0.6cm;
   max-width: 1cm;
-	height: 4vh;
+  height: 4vh;
   min-height: 0.6cm;
   background-size: cover;
   background-image: url("../images/closedEye.svg");
 }
 
-.togglePassword:checked + label{
+.togglePassword:checked+label {
   background-image: url("../images/openedEye.svg");
 }
 
-.hidePasswordImage{
+.hidePasswordImage {
   position: absolute;
-  right:1%;
-  top:13%;
+  right: 1%;
+  top: 13%;
   cursor: pointer;
 }
 
-.passwordContainer{
+.passwordContainer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

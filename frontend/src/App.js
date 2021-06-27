@@ -133,7 +133,7 @@ class App extends Component {
 
       switch (this.state.user) {
         case "noUserYet":
-          view=<LoadingCircles />
+          view=<div className="loadingUser"><LoadingCircles /></div>
           break;
         case "noUser":
            view=<Login email={this.state.email}
@@ -154,14 +154,8 @@ class App extends Component {
         break;          
       }
     
-      return (
-        <div className="App">
-        {
-          view
-        }
-        </div>
+      return view
 
-    );
   }
 
   appState(ob){

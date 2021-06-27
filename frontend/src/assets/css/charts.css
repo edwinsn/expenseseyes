@@ -9,6 +9,7 @@
     align-content: space-between;
     row-gap:3vh;
     position: relative;
+    padding: 1.5% 0 0 0;
 }
 .charts>*{
     flex-basis: 40%;

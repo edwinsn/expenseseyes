@@ -53,7 +53,7 @@ class MainPage extends Component{
         this.setState({
             data,
              Charts:<Charts purchases={data}/>,
-               PurchaseList:<PurchaseList keY={Math.random()}className="purchaseList" 
+               PurchaseList:<PurchaseList key={Math.random()}className="purchaseList" 
                purchases={data}
                deletePurchase={this.deletePurchase}
                update={this.getPurchases}
@@ -67,7 +67,7 @@ class MainPage extends Component{
         this.setState({
             data,
              Charts:<Charts purchases={data}/>,
-               PurchaseList:<PurchaseList keY={Math.random()}className="purchaseList" 
+               PurchaseList:<PurchaseList key={Math.random()}className="purchaseList" 
                purchases={data}
                deletePurchase={this.deletePurchase}
                loading={{deleting:false}}

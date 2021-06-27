@@ -11,7 +11,6 @@ export function Purchase(props) {
     //console.log(updating)
     return (
         <form
-        key={props.key}
         className="purchase"
         onSubmit={async (ev)=>{
                 ev.preventDefault()
@@ -52,7 +51,7 @@ export function Purchase(props) {
                 className="purchaseName" type="text" defaultValue={name}/>
                 <input key="3" className="purchaseCategory" type="text" defaultValue={category}/>
                 <input  
-                keY="4"
+                key="4"
                 className="purchaseDate" 
                 type="text" 
                 onFocus={(ev)=>{ev.target.type="date"}} 
