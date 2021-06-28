@@ -11,6 +11,7 @@ export function Purchase(props) {
     //console.log(updating)
     return (
         <form
+        key={props.key}
         className="purchase"
         onSubmit={async (ev)=>{
                 ev.preventDefault()
@@ -57,7 +58,7 @@ export function Purchase(props) {
                 onFocus={(ev)=>{ev.target.type="date"}} 
                 onBlur={(ev)=>{
                     ev.target.type="text"
-                    ev.target.value=date.toISOString().split('T')[0].split("-").reverse().join("/")
+                    ev.target.value=ev.target.value.split('T')[0].split("-").reverse().join("/")
             }}
                 defaultValue = {date.toISOString().split('T')[0].split("-").reverse().join("/")}
                 /> 
@@ -90,9 +91,15 @@ let updatedPurchase=async function(inputs,id){
     let category=inputs[2].value
     let date=inputs[3].value
 
+    var regex = /(\d+)/g;
+    let day = parseInt(date.match(regex)[0])
+    let month = parseInt(date.match(regex)[1])-1
+    let year = parseInt(date.match(regex)[2])
+
+   date=new Date(year, month, day)
    // if(price[0]==="$")price=price.slice(1,price.length)
 
-    console.log(price,name, category,date)
+    console.log(date)
 
     const newPurchase={
         id,

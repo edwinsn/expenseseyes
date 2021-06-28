@@ -2,7 +2,7 @@
   .loginHeader {
     background-color: #E3E6C7;
   }
-  span {
+  .login > div>div>span {
     font-size: 1.2em;
   }
   .listIcon {
@@ -15,7 +15,7 @@
 }
 
 @media (min-width: 600px) {
-  span {
+  .login > div>div>span {
     font-size: 1.5em;
   }
   .listIcon {
@@ -168,9 +168,9 @@ button {
 }
 
 .login .loginContainer {
-  padding: 7%;
+  padding: 6%;
   width: 80%;
-  max-width: 520px;
+  max-width: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,7 +199,7 @@ button {
   letter-spacing: 1px;
   border: 1.5px solid #383A34;
   border-radius: 10px;
-  height: 15vh;
+  height: 13vh;
   min-height: 0.8cm;
   max-height: 1cm;
 }
