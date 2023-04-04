@@ -3,7 +3,6 @@
 export const hist = function(data,numbreOfIntervals=0, dates=false, prices=[]){
 
     if(!data[0])return {labels:undefined, frecuences:undefined, totals:undefined};
-    //console.log(data)
 
 
     if( !numbreOfIntervals ){
