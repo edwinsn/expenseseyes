@@ -42,6 +42,7 @@ export let ChartOptions = (props) => {
                     type="number"
                     className='divisionInput'
                     onChange={props.setDivisions}
+                    defaultValue={10}
                 />
             }
             {!props.fullScreen &&

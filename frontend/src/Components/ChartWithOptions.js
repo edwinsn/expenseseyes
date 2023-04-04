@@ -24,6 +24,7 @@ export class ChartWithOptions extends Component {
     this.dataByPrice = dataByPrice
     this.dataByCounts = dataByCounts
     this.renderId = this.props.renderId
+    this.divisions=10
 
     this.state = {
       orderByPrice: true,
