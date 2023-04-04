@@ -12,7 +12,7 @@ const Header=({handleLogout, email})=>{
            </a>
             <span className="container">
                 <p className="email">{email}</p>
-                    <img src={logOutIcon} className="logOutBtn" onClick={handleLogout} alt="Salir"/>
+                    <img src={logOutIcon} className="logOutBtn" onClick={handleLogout} alt="Salir" title='Salir'/>
             </span>
         </header>
 

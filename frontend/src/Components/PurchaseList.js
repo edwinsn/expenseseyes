@@ -62,10 +62,10 @@ export class PurchaseList extends Component {
                     <span className="purchasesTitle">Compras</span>
                     <div className="container">
                         <span>ordenar por:</span>
-                        <button className="orderPurchases"
+                        <button className="orderPurchases" title='ordenar por precio'
                             onClick={() => { this.setState({ order: "byPrice" }) }}
                         >$</button>
-                        <button className="orderPurchases"
+                        <button className="orderPurchases" title="ordenar por fecha"
                             onClick={() => { this.setState({ order: "byDate" }) }}
                             alt="ordenar por Fecha"
                         ><img className="calendarIcon" alt="ordernar por fecha" src={canlendarIcon} /></button>

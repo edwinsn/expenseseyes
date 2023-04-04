@@ -16,6 +16,11 @@ header {
     position: fixed;
     top: 0;
     background-color:#676863;
+    /*background-color: #B0B39B;
+    background-color: #959976;
+    background-color: #667B7D;
+    background-color: #486356;
+    background-color: #2A6349;*/
     display: flex;
     align-items: center;
     justify-content: space-between;
