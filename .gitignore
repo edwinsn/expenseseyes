@@ -33,7 +33,6 @@ src/setupTests.js
 
 #enviroment file
 backend/.env
-frontend/.env
 frontend/build
 frontend/firebase.json
 frontend/firebaserc
