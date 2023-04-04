@@ -8,7 +8,7 @@ const Header=({handleLogout, email})=>{
 
         <header className="header">
            <a href="#mainPage" className="appIconContainer">
-            <img src={appIcon} alt="app Icon" className="appIcon"/>
+            <img src={appIcon} alt="app Icon" className="appIcon" title='ExpensesEyes' />
            </a>
             <span className="container">
                 <p className="email">{email}</p>

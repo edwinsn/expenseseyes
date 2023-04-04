@@ -28,7 +28,7 @@ const Login = (props) => {
             <header className="loginHeader">
                 <div>
                     <img src={appIcon} alt="app icon" />
-                    <span>Requio</span>
+                    <span>ExpensesEyes</span>
                 </div>
                 <a href="#login">Login</a>
             </header>
