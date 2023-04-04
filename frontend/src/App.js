@@ -37,7 +37,7 @@ class App extends Component {
 
     this.loading=true
     this.clearErrors()
-    console.log(this.state.email.trim())
+
     fire
         .auth()
         .signInWithEmailAndPassword(this.state.email.trim(), this.state.password)

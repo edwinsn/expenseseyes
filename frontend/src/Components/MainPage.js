@@ -77,7 +77,6 @@ class MainPage extends Component{
 
 
     async getPurchases(){
-        console.log("getting data")
 
         try{
             let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:this.props.userId} })
