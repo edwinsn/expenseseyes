@@ -1,3 +1,3 @@
-# purchase-analysis
+# ExpensesEyes
 
-A program that saves your purchase data and shows you some statistics about it(https://purchase-analysis-23370.web.app/ ).
+Money gone missing? Solve the mistery with this app!
