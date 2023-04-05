@@ -64,9 +64,10 @@ const Login = (props) => {
 
 
                     {(showResetPasswordMessage) && <p>Revisa tu correo electrónico para restablecer la contraseña</p>}
-                    <label>Email</label>
-                    <input type="email"
-
+                    <label for="email" >Email</label>
+                    <input
+                        id="email"
+                        type="mail"
                         required
                         value={email}
                         onChange={e => {
@@ -74,9 +75,11 @@ const Login = (props) => {
                         }} />
 
                     <p className="errorMsg">{emailError}</p>
-                    <label>Contraseña</label>
+                    <label for="password" >Contraseña</label>
                     <div className="passwordContainer">
-                        <input type={hidepassword ? "password" : "text"}
+                        <input
+                            id='password'
+                            type={hidepassword ? "password" : "text"}
                             required
                             value={password}
                             onChange={e => {
