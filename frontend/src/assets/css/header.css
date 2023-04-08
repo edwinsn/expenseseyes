@@ -1,9 +1,10 @@
 .appIcon{
   margin-left: 15%;
-  height: 90%;
+  height: 75%;
 }
 
 .appIconContainer{
+  color: rgb(39, 65, 22);
   height: 100%;
   display: flex;
   align-items: center;
@@ -15,12 +16,7 @@ header {
     min-height: 1cm;
     position: fixed;
     top: 0;
-    background-color:#676863;
-    /*background-color: #B0B39B;
-    background-color: #959976;
-    background-color: #667B7D;
-    background-color: #486356;
-    background-color: #2A6349;*/
+    background-color: hsl(153, 35%, 30%);
     display: flex;
     align-items: center;
     justify-content: space-between;
