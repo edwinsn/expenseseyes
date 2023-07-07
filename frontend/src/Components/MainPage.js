@@ -6,6 +6,7 @@ import axios from 'axios'
 import { Component } from "react"
 import Header from './Header.js'
 import '../assets/css/mainpage.css'
+import PurchasesTabs from './Purchases/PurchasesTabs'
 
 class MainPage extends Component{
 
@@ -26,14 +27,18 @@ class MainPage extends Component{
 
     render(){
         
-        console.log("Main Page Rendered")
 
         return (
             <div className="MainPage" id="mainPage">
            <Header handleLogout={this.props.handleLogout} email={this.props.email}/>
-            <div className="purchasesInfo" >
+            <div className="purchasesInfo g-1 stretch-items" >
                 <NewPurchase update={this.getPurchases} userId={this.props.userId} className="newPurchase"/>
-                {this.state.PurchaseList}     
+                <PurchasesTabs 
+                                purchases={this.data}
+                                deletePurchase={this.deletePurchase}
+                                update={this.getPurchases}
+                                loading={this.state.loading}
+                 />  
             </div>
 
             <div className="chartsPart">
@@ -58,7 +63,6 @@ class MainPage extends Component{
                deletePurchase={this.deletePurchase}
                update={this.getPurchases}
                loading={{deleting:false}}/>})
-
 
     }
     
@@ -85,13 +89,9 @@ class MainPage extends Component{
             if(status===200){
                 this.setState({
                 data,
+                loading: {deleting:false},
                 Charts:<Charts purchases={data}/>,
-                PurchaseList:<PurchaseList className="purchaseList" 
-                purchases={data}
-                deletePurchase={this.deletePurchase}
-                loading={{deleting:false}}
-                update={this.getPurchases}
-                />})
+            })
                 
             }
             else{

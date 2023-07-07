@@ -1,9 +1,9 @@
 import { Component } from 'react'
-import { Purchase } from './Purchase'
-import '../assets/css/purchaseList.css'
-import canlendarIcon from '../assets/images/Calendar.svg'
+import { Purchase } from '../Purchase'
+import '../../assets/css/purchaseList.css'
+import canlendarIcon from '../../assets/images/Calendar.svg'
 
-export class PurchaseList extends Component {
+class Budget extends Component {
 
     constructor(props) {
         super(props)
@@ -12,7 +12,7 @@ export class PurchaseList extends Component {
 
 
     render() {
-      
+
         let list
 
         let total = 0
@@ -58,7 +58,7 @@ export class PurchaseList extends Component {
         return (
             <div className="purchaseList grow" >
                 <div className="listTitle">
-                    <span className="purchasesTitle">Compras</span>
+                    <span className="purchasesTitle">Budget</span>
                     <div className="container">
                         <span>ordenar por:</span>
                         <button className="orderPurchases" title='ordenar por precio'
@@ -78,3 +78,5 @@ export class PurchaseList extends Component {
         )
     }
 }
+
+export default Budget

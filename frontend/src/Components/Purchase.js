@@ -7,8 +7,8 @@ export function Purchase(props) {
 
     let [loading, changeLoading] = useState(false)
     let [updating,changeUpdating]=useState(false)
-    //console.log(loading)
-    //console.log(updating)
+
+
     return (
         <form
         key={props.key}
@@ -97,9 +97,7 @@ let updatedPurchase=async function(inputs,id){
     let year = parseInt(date.match(regex)[2])
 
    date=new Date(year, month, day)
-   // if(price[0]==="$")price=price.slice(1,price.length)
 
-    console.log(date)
 
     const newPurchase={
         id,
