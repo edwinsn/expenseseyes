@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import BarChart from './BarChart'
-import { ChartOptions } from './ChartOptions'
+import BarChart from './Charts/BarChart'
+import { ChartOptions } from './Charts/ChartOptions'
 
 
 export class ChartWithOptions extends Component {

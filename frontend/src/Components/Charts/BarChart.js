@@ -1,6 +1,6 @@
 import React,{Component} from "react";
-import noDataIcon from '../assets/images/noData.svg'
-import '../assets/css/barchart.css'
+import noDataIcon from '../../assets/images/noData.svg'
+import '../../assets/css/barchart.css'
 
 
 class Bar extends Component{

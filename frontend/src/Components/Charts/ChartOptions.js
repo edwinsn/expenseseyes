@@ -1,6 +1,6 @@
-import '../assets/css/chartoptions.css'
-import enlageIcon from '../assets/images/Enlarge.svg'
-import calendarIcon from '../assets/images/Calendar.svg'
+import '../../assets/css/chartoptions.css'
+import enlageIcon from '../../assets/images/Enlarge.svg'
+import calendarIcon from '../../assets/images/Calendar.svg'
 
 export let ChartOptions = (props) => {
 

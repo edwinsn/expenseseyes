@@ -1,8 +1,8 @@
 import { Component } from 'react'
-import { hist, groupBy } from '../statistics'
-import { ChartWithOptions } from './ChartWithOptions'
-import '../assets/css/charts.css'
-import noDataIcon from '../assets/images/noData.svg'
+import { hist, groupBy } from '../../statistics'
+import { ChartWithOptions } from '../ChartWithOptions'
+import '../../assets/css/charts.css'
+import noDataIcon from '../../assets/images/noData.svg'
 class PurchaseDistributionByPrice extends Component {
 
   constructor(props) {

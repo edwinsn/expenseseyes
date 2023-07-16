@@ -1,12 +1,12 @@
-import {NewPurchase} from './NewPurchase'
-import {Charts} from  './Charts'
-import {PurchaseList} from './PurchaseList'
-import {LoadingRectangles} from './Loading'
+import {NewPurchase} from './Purchases/NewPurchase'
+import {Charts} from  './Charts/Charts'
+import {PurchaseList} from './Purchases/PurchaseList'
+import {LoadingRectangles} from './ultils/Loading'
 import axios from 'axios'
 import { Component } from "react"
 import Header from './Header.js'
 import '../assets/css/mainpage.css'
-import PurchasesTabs from './Purchases/PurchasesTabs'
+import PurchasesTabs from './PurchasesTabs'
 
 class MainPage extends Component{
 
@@ -83,7 +83,7 @@ class MainPage extends Component{
     async getPurchases(){
 
         try{
-            let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI,{ params:{userId:this.props.userId} })
+            let {data,status} = await axios.get(process.env.REACT_APP_PURCHASES_URI + "purchases",{ params:{userId:this.props.userId} })
 
             this.data=data
             if(status===200){

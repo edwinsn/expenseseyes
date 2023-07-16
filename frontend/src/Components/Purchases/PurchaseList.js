@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Purchase } from './Purchase'
-import '../assets/css/purchaseList.css'
-import canlendarIcon from '../assets/images/Calendar.svg'
+import '../../assets/css/purchaseList.css'
+import canlendarIcon from '../../assets/images/Calendar.svg'
 
 export class PurchaseList extends Component {
 

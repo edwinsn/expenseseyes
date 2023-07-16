@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import '../assets/css/login.css'
-import { LoadingCircles } from "./Loading";
-import bars from '../assets/images/bars.svg'
-import appIcon from "../assets/images/appIcon.svg"
+import '../../assets/css/login.css'
+import { LoadingCircles } from "../ultils/Loading";
+import bars from '../../assets/images/bars.svg'
+import appIcon from "../../assets/images/appIcon.svg"
 
 const Login = (props) => {
 
@@ -23,7 +23,7 @@ const Login = (props) => {
 
     return (
 
-        <div className="introPage">
+        <div className="introPage" id="login">
 
             <header className="loginHeader">
                 <div>

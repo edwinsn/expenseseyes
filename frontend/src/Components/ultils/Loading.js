@@ -1,4 +1,4 @@
-import '../assets/css/loading.css'
+import '../../assets/css/loading.css'
 
 export function LoadingRectangles(){
     return(<div className="lds-facebook"><div></div><div></div><div></div></div>)
