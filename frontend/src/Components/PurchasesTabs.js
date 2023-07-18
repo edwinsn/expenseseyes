@@ -17,7 +17,7 @@ export default function PurchasesTabs({
     <Tabs
       selectedIndex={tabIndex}
       onSelect={(index) => setTabIndex(index)}
-      className="flex column grow stretch-items"
+      className="flex column grow stretch-items h-60"
     >
       <TabList>
         <Tab>Historial</Tab>
@@ -25,7 +25,7 @@ export default function PurchasesTabs({
       </TabList>
 
       <TabPanel
-        className={`column ${tabIndex === 0 && "grow"}`}
+        className={`column mh-91 ${tabIndex === 0 && "grow"}`}
         style={{ display: "flex" }}
       >
         <PurchaseList
