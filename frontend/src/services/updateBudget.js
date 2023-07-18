@@ -1,13 +1,14 @@
 import store from "../reducers/store";
 import axios from "axios";
 
-let updatedBudget = async function ({ budgetId, expected, category }) {
+let updatedBudget = async function ({ budgetId, expected, category, date }) {
   const userId = store.getState()?.userId;
   const newBudget = {
     id: budgetId,
     expected,
     category,
     userId,
+    date,
   };
 
   return await axios.put(

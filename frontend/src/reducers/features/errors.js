@@ -13,14 +13,11 @@ export const errorsSlice = createSlice({
      * @param {number[]} state.value -previous errors
      * @param {number} action.payload.code -new error detected
      */
-    updateErrorList: (state, action) => {
-      return { value: [...state.value, action.payload.code] };
-    },
-    cleanErrorList: () => {
-      return { value: [] };
+    addErrorList: (state, action) => {
+      return [...state.value, action.payload];
     },
   },
 });
 
-export const { updateErrorList } = errorsSlice.actions;
+export const { addErrorList } = errorsSlice.actions;
 export default errorsSlice.reducer;
