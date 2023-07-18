@@ -12,7 +12,6 @@ function Category({
   expenses = [],
   budgetId,
   date,
-  monthSelected,
   setNewBudgets,
   setLocalBudget,
   localId,
@@ -48,9 +47,9 @@ function Category({
     else
       await createBudget({ category, expected, date }).then((id) => {
         setNewId(id);
-        setNewBudgets((prev) =>
-          prev.filter((b) => !(b.category === category && b.date === date))
-        );
+        // setNewBudgets((prev) =>
+        //   prev.filter((b) => !(b.category === category && b.date === date))
+        // );
       });
     changeLoading(false);
   };
@@ -103,7 +102,7 @@ function Category({
         </div>
 
         <input
-          key={`h-100 category-${category}`}
+          key={`h-100 category-${budgetId || localId}`}
           className="purchaseCategory"
           type="text"
           name="category"

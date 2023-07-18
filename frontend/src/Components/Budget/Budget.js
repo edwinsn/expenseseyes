@@ -75,7 +75,7 @@ const Budget = ({ purchases = [] }) => {
 
         return (
           <Category
-            key={`category-item-${category}`}
+            key={`category-item-${_id || localId}`}
             expected={expected}
             expended={expended}
             category={category}
@@ -122,7 +122,7 @@ const Budget = ({ purchases = [] }) => {
       category: "Nuevo",
       date: new Date(yearSelected, monthSelected, 1),
     };
-    setNewBudgets([...newBugets, newBudget]);
+    setNewBudgets((prev) => [...prev, newBudget]);
   };
 
   return (
