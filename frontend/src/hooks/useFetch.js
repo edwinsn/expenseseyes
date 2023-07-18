@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useFetch(
@@ -7,6 +8,8 @@ export default function useFetch(
   params = {},
   reactQueryParams = {}
 ) {
+  const [localData, setLocalData] = useState();
+
   const { isLoading, data, refetch } = useQuery({
     queryKey: url,
     queryFn: () => {
@@ -31,5 +34,15 @@ export default function useFetch(
 
   const noData = !isThereData && !isLoading;
 
-  return [dataExtracted || defaultValue, isLoading, noData, refetch];
+  useEffect(() => {
+    if (!localData) setLocalData(dataExtracted);
+  }, [dataExtracted, setLocalData, localData]);
+
+  return [
+    localData || dataExtracted || defaultValue,
+    isLoading,
+    setLocalData,
+    noData,
+    refetch,
+  ];
 }

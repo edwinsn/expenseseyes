@@ -7,6 +7,7 @@ import { LoadingCircles } from "./Components/ultils/Loading";
 import store from "./reducers/store";
 import { setUser } from "./reducers/features/user";
 import ReportAxiosErrorsWrapper from "./AxiosInterceptors/ReportAxiosErrorsWrapper";
+import Notifications from "./Components/Notifications/Notifications";
 
 class App extends Component {
   constructor(props) {
@@ -132,7 +133,6 @@ class App extends Component {
   }
 
   render() {
-
     let view;
 
     switch (this.state.user) {
@@ -146,6 +146,7 @@ class App extends Component {
       case "noUser":
         view = (
           <ReportAxiosErrorsWrapper>
+            <Notifications />
             <Login
               email={this.state.email}
               password={this.state.password}
@@ -165,6 +166,7 @@ class App extends Component {
       default:
         view = (
           <ReportAxiosErrorsWrapper>
+            <Notifications />
             <MainPage
               handleLogout={this.handleLogout}
               userId={this.userId}
