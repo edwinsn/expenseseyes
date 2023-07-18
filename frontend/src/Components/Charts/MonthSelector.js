@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const MonthSelector = ({ setMonthSelected }) => {
-
+const MonthSelector = ({ setMonthSelected, setYearSelected }) => {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    setMonthSelected(month)
-  }, [month, setMonthSelected])
+    setMonthSelected(month);
+    setYearSelected(year);
+  }, [month, setMonthSelected, year, setYearSelected]);
 
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   const handlePrevMonth = () => {
@@ -33,9 +43,11 @@ const MonthSelector = ({ setMonthSelected }) => {
   };
 
   return (
-    <div className='flex'>
+    <div className="flex">
       <button onClick={handlePrevMonth}>&lt;</button>
-      <span className='mx-1'>{months[month]} {year}</span>
+      <span className="mx-1">
+        {months[month]} {year}
+      </span>
       <button onClick={handleNextMonth}>&gt;</button>
     </div>
   );

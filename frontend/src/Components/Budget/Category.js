@@ -1,38 +1,74 @@
 import { LoadingCircles } from "../ultils/Loading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DropDown from "../ultils/DropDown";
 import PurchasesRelatedToCategory from "../PurchasesRelatedToCategory";
 import updatedBudget from "../../services/updateBudget";
 import createBudget from "../../services/createBudget";
 
 function Category({
-  expected = 0,
+  expected: savedExpected = 0,
   expended = 0,
   category = "Various",
   expenses = [],
   budgetId,
+  date,
+  monthSelected,
+  setNewBudgets,
+  setLocalBudget,
+  localId,
+  setNewLocalBudget,
 }) {
-  let [loading, changeLoading] = useState(false);
-  let [updating, changeUpdating] = useState(false);
+  const [loading, changeLoading] = useState(false);
+  const [updating, changeUpdating] = useState(false);
+  const [newId, setNewId] = useState();
+  const [expected, setExpected] = useState();
 
-  let wasMoneySaved = expended < expected;
+  useEffect(() => {
+    setExpected(savedExpected);
+  }, [savedExpected]);
+
+  let wasMoneySaved = expended <= expected;
 
   const handleUpdate = async (ev) => {
     ev.preventDefault();
     changeLoading(true);
     // eslint-disable-next-line
-    if (expected != ev.target[0].value || expended != ev.target[1].value) {
-      changeLoading(true);
-      changeUpdating(false);
-      const formData = new FormData(ev.target);
-      const category = formData.get("category");
-      const expected = formData.get("expected");
-      if (budgetId) await updatedBudget({ category, expected, budgetId });
-      else await createBudget({ category, expected });
-      changeLoading(false);
-    }
+    changeUpdating(false);
+    const formData = new FormData(ev.target);
+    const category = formData.get("category");
+    const expected = formData.get("expected");
+
+    if (budgetId || newId)
+      await updatedBudget({
+        category,
+        expected,
+        budgetId: budgetId || newId,
+        date,
+      });
+    else
+      await createBudget({ category, expected, date }).then((id) => {
+        setNewId(id);
+        setNewBudgets((prev) =>
+          prev.filter((b) => !(b.category === category && b.date === date))
+        );
+      });
+    changeLoading(false);
   };
 
+  const setLocalCategory = (ev) => {
+    const category = ev.target.value;
+    if (budgetId) {
+      setLocalBudget({
+        _id: budgetId,
+        category,
+      });
+    } else {
+      setNewLocalBudget({
+        localId: localId,
+        category,
+      });
+    }
+  };
 
   return (
     <DropDown>
@@ -51,6 +87,7 @@ function Category({
             key={`${category}-budget`}
             type="number"
             name="expected"
+            onChange={(ev) => setExpected(ev.target.value)}
             className="bg-blue h-100 text-center grow border-0 text-like w-50"
             defaultValue={expected}
           />
@@ -72,6 +109,7 @@ function Category({
           name="category"
           onClick={(ev) => ev.stopPropagation()}
           defaultValue={category}
+          onChange={setLocalCategory}
         />
 
         {<div className="flex align-center mx-1">&#65509;</div>}
@@ -80,7 +118,14 @@ function Category({
             <LoadingCircles />
           </div>
         )}
-        {updating && <input className="saveBtn" type="submit" value="" />}
+        {updating && (
+          <input
+            className="saveBtn"
+            onClick={(ev) => ev.stopPropagation()}
+            type="submit"
+            value=""
+          />
+        )}
       </form>
       <PurchasesRelatedToCategory category={category} expenses={expenses} />
     </DropDown>

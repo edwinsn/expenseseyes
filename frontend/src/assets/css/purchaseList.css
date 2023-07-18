@@ -1,4 +1,4 @@
-.container > span{
+.container>span {
     font-size: 1.1em;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .listTitle>.container>button>img {
-    height:1.5em;
+    height: 1.5em;
 }
 
 .listTitle>.container>button {
@@ -77,12 +77,12 @@
     display: none;
 }
 
-.purchase {
+.purchase, .category {
     width: 100%;
     height: 5vh;
     border-radius: 4px;
     margin-bottom: 0.3vh;
-    background-color: #E3E6C7;
+    background-color: var(--sepia);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,14 +96,15 @@
     display: none;
 }
 
-.purchase>* {
+.purchase>*, .category>* {
     white-space: nowrap;
     overflow: visible;
-    background-color: transparent;
     border: 0;
     font-family: 'New Tegomin', serif;
     font-weight: 1000;
+    background-color: transparent;
 }
+
 
 .purchase input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -174,6 +175,6 @@
 }
 
 
-.total{
+.total {
     font-size: 1.3em;
 }

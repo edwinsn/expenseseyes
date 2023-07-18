@@ -1,30 +1,30 @@
-.intervalOfChart{
+.intervalOfChart {
     position: absolute;
     background-color: white;
     z-index: 3;
-    border-radius:2px;
-    box-shadow:2px 2px #E0E0E0;
+    border-radius: 2px;
+    box-shadow: 2px 2px #E0E0E0;
     right: 10%;
 }
 
-.intervalOfChart > li{
+.intervalOfChart>li {
     display: none;
     z-index: 3;
-    border-bottom:1px solid #E0E0E0 ;
+    border-bottom: 1px solid #E0E0E0;
 }
 
-.optionsContainer > div:hover >.intervalOfChart >li{
+.optionsContainer>div:hover>.intervalOfChart>li {
     display: block;
     padding: 6px 4px;
 }
 
 
-.optionsContainer > select{
-    background-color:#E3E6C7;
+.optionsContainer>select {
+    background-color: var(--sepia);
     border: 0;
 }
 
-.optionsContainer{
+.optionsContainer {
     float: right;
     display: flex;
     align-items: center;
@@ -37,7 +37,7 @@
     height: 2.2vh;
 }
 
-.closeChart{
+.closeChart {
     color: red;
     cursor: pointer;
     font-weight: 1000;

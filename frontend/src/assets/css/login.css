@@ -1,37 +1,41 @@
 @media (max-width: 600px) {
   .loginHeader {
-    background-color: #E3E6C7;
+    background-color: var(--sepia);
   }
-  .login > div>div>span {
+
+  .login>div>div>span {
     font-size: 1.2em;
   }
+
   .listIcon {
     width: 70%;
   }
 
-.loginHeader > a{
-  background-color: #0D894A;
-} 
+  .loginHeader>a {
+    background-color: #0D894A;
+  }
 }
 
 @media (min-width: 600px) {
-  .login > div>div>span {
+  .login>div>div>span {
     font-size: 1.5em;
   }
+
   .listIcon {
     width: 23%;
     min-width: 7cm;
   }
+
   .loginHeader {
     background-color: transparent;
   }
-.loginHeader > a{
-  margin-right: 1%;
-  background-color: blue;
-}
+
+  .loginHeader>a {
+    background-color: #0D894A;
+  }
 }
 
-button {
+#login button {
   border: none;
   width: 100%;
   height: 9vh;
@@ -126,7 +130,7 @@ button {
 }
 
 .loginHeader {
-  padding: 5px;
+  padding: 5px 2vw;
   height: 8vh;
 }
 

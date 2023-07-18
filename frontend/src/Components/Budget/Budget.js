@@ -5,69 +5,125 @@ import { useState } from "react";
 import useBudget from "./hooks/useBudget";
 
 const Budget = ({ purchases = [] }) => {
-  const [budgetList, loadingBudget] = useBudget([]);
+  const [budgetListFromBackend, loadingBudgetFromBackend, setLocalBudget] =
+    useBudget([]);
   const [monthSelected, setMonthSelected] = useState(new Date().getMonth());
+  const [yearSelected, setYearSelected] = useState(new Date().getFullYear());
+  const [newBugets, setNewBudgets] = useState([]);
 
-  let allBudgets = [];
+  let allBudgets = budgetListFromBackend;
   let budgetsFormated = [];
+  let budgetsFiltered;
   let totalSaved = 0;
 
-  const purchasesFilteredByMonth = purchases.filter(
-    ({ date }) => new Date(date).getMonth() === monthSelected
-  );
-
-  //Add budgets with cateogries
-  if (purchasesFilteredByMonth && !loadingBudget) {
-    let categories = groupByCategory(purchasesFilteredByMonth);
-
-    categories = categories.map((item) => {
-      const budget = budgetList.find((b) => b.category === item.category);
-      return {
-        ...item,
-        expected: budget?.expected,
-        budgetId: budget?._id,
-      };
-    });
-
-    allBudgets = allBudgets.concat(categories);
-  }
-
-  //Add budgets without purchases
-
-  if (budgetList) {
+  //Add budgets created in this session
+  if (newBugets) {
     allBudgets = allBudgets.concat(
-      budgetList
-        .filter(
-          (budget) =>
-            !allBudgets.some((budgetSaved) => budgetSaved.id === budget.id)
-        )
-        .map((b) => {
-          return { ...b, budgetId: b._id };
-        })
+      newBugets.map((b) => {
+        return { ...b };
+      })
     );
   }
 
+  //filter by date
+  const purchasesFilteredByMonth = purchases.filter(
+    ({ date }) =>
+      new Date(date).getMonth() === monthSelected &&
+      new Date(date).getFullYear() === yearSelected
+  );
+
+  //filter by date
+  const budgetsFilteredByMonth = allBudgets.filter(
+    ({ date }) =>
+      new Date(date).getMonth() === monthSelected &&
+      new Date(date).getFullYear() === yearSelected
+  );
+
+  //Add expenses to budgets based on categories
+  if (!loadingBudgetFromBackend) {
+    let categories = groupByCategory(purchasesFilteredByMonth);
+
+    let budgetWithExpenses = budgetsFilteredByMonth.map((budget) => {
+      const category =
+        categories.find((c) => c.category === budget.category) || {};
+      return {
+        ...budget,
+        ...category,
+      };
+    });
+
+    budgetsFiltered = budgetWithExpenses;
+  }
+
   //Format Budgets
-  budgetsFormated = allBudgets
+  budgetsFormated = budgetsFiltered
     ?.sort((a, b) => {
       return b.expected - a.expected;
     })
-    ?.map(({ id, category, expected, expended, expenses, budgetId } = {}) => {
-      let saved = expected - expended;
-      totalSaved += !isNaN(saved) ? saved : 0;
+    ?.map(
+      ({
+        category,
+        expected = 0,
+        expended,
+        expenses,
+        _id,
+        date,
+        localId,
+      } = {}) => {
+        let saved = expected - expended;
+        totalSaved += !isNaN(saved) ? saved : 0;
 
-      return (
-        <Category
-          id={id}
-          key={`category-item-${category}`}
-          expected={expected}
-          expended={expended}
-          category={category}
-          expenses={expenses}
-          budgetId={budgetId}
-        />
-      );
-    }) || <p>Sin compras Aún</p>;
+        return (
+          <Category
+            key={`category-item-${category}`}
+            expected={expected}
+            expended={expended}
+            category={category}
+            expenses={expenses}
+            budgetId={_id}
+            localId={localId}
+            date={date}
+            year={yearSelected}
+            monthSelected={monthSelected}
+            setNewBudgets={setNewBudgets}
+            setLocalBudget={(budget) =>
+              setLocalBudget((prev) => {
+                const newBugets = prev.map((b) => {
+                  if (b._id === budget._id) {
+                    return { ...b, ...budget };
+                  } else {
+                    return b;
+                  }
+                });
+                return newBugets;
+              })
+            }
+            setNewLocalBudget={(budget) => {
+              setNewBudgets((prev) => {
+                const newBugets = prev.map((b) => {
+                  if (b.localId === budget.localId) {
+                    return { ...b, ...budget };
+                  } else {
+                    return b;
+                  }
+                });
+                return newBugets;
+              });
+            }}
+          />
+        );
+      }
+    ) || <p>Sin compras Aún</p>;
+
+  const addBudget = () => {
+    const newBudget = {
+      localId: newBugets.length + 1,
+      expected: 0,
+      category: "Nuevo",
+      date: new Date(yearSelected, monthSelected, 1),
+    };
+    setNewBudgets([...newBugets, newBudget]);
+  };
 
   return (
     <div className="purchaseList grow">
@@ -75,7 +131,10 @@ const Budget = ({ purchases = [] }) => {
         <span className="purchasesTitle">Budget</span>
         <div className="container">
           <div className="mx-1">
-            <MonthSelector setMonthSelected={setMonthSelected} />
+            <MonthSelector
+              setMonthSelected={setMonthSelected}
+              setYearSelected={setYearSelected}
+            />
           </div>
         </div>
       </div>
@@ -87,7 +146,12 @@ const Budget = ({ purchases = [] }) => {
         <div>Nombre</div>
         <div>Detalles</div>
       </div>
-      <div className="list">{budgetsFormated}</div>
+      <div className="list">
+        {budgetsFormated}
+        <button className="p-05 my-1" onClick={addBudget}>
+          Añadir Presupuesto
+        </button>
+      </div>
       <span className="total">
         Ahorrado<span className="mx-1">{totalSaved}</span>
       </span>

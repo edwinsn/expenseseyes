@@ -1,0 +1,15 @@
+.drop-container .header {
+    cursor: pointer;
+}
+
+.drop-container .content {
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    height: 0;
+    background-color: var(--sepia);
+    overflow-y: scroll;
+}
+
+.drop-container .content.open {
+    height: 12em;
+}

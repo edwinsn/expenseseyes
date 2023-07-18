@@ -24,7 +24,6 @@ export class NewPurchase extends Component {
   }
 
   render() {
-    console.log("Rendered new Purchase");
     return (
       <div className="newPurchase">
         <div id="newPurchase" className="newPurchaseTitle">
@@ -98,7 +97,6 @@ export class NewPurchase extends Component {
       );
 
       if (status === 200) {
-        console.log("Data saved");
         await this.props.update();
 
         for (let i = 0; i < 3; i++) {

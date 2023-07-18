@@ -23,7 +23,7 @@ const Login = (props) => {
 
     return (
 
-        <div className="introPage" id="login">
+        <div className="introPage">
 
             <header className="loginHeader">
                 <div>
@@ -64,7 +64,7 @@ const Login = (props) => {
 
 
                     {(showResetPasswordMessage) && <p>Revisa tu correo electrónico para restablecer la contraseña</p>}
-                    <label for="email" >Email</label>
+                    <label htmlFor="email" >Email</label>
                     <input
                         id="email"
                         type="mail"
@@ -75,7 +75,7 @@ const Login = (props) => {
                         }} />
 
                     <p className="errorMsg">{emailError}</p>
-                    <label for="password" >Contraseña</label>
+                    <label htmlFor="password" >Contraseña</label>
                     <div className="passwordContainer">
                         <input
                             id='password'
@@ -93,7 +93,7 @@ const Login = (props) => {
                             }
                         />
                         <input type="checkbox" id="hidepassword" className="togglePassword" onChange={() => { toggleHidePassword(!hidepassword) }}></input>
-                        <label for="hidepassword" htmlFor="hidepassword" className="hidePasswordImage" />
+                        <label htmlFor="hidepassword" className="hidePasswordImage" />
                     </div>
                     <p className="errorMsg">{passwordError}</p>
                     <div className="btnContainer">
