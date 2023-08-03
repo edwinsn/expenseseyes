@@ -7,6 +7,6 @@ const budgetSchema = new Schema({
   date: { type: Date, require: true },
 });
 
-budgetSchema.index({ userId: 1, category: 1 }, { unique: true });
+budgetSchema.index({ userId: 1, category: 1, date: 1 }, { unique: true });
 
 module.exports = model("budget", budgetSchema);
